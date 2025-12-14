@@ -1,0 +1,97 @@
+{
+  "name": "@easy-editor/setters",
+  "version": "0.0.1",
+  "description": "Official setters library for EasyEditor - A collection of property setter components",
+  "type": "module",
+  "main": "src/index.ts",
+  "types": "src/index.ts",
+  "exports": {
+    ".": "./src/index.ts",
+    "./StringSetter": "./src/basic/StringSetter.tsx",
+    "./NumberSetter": "./src/basic/NumberSetter.tsx",
+    "./ColorSetter": "./src/basic/ColorSetter.tsx",
+    "./NodeIdSetter": "./src/basic/NodeIdSetter.tsx",
+    "./RectSetter": "./src/basic/RectSetter.tsx",
+    "./SwitchSetter": "./src/basic/SwitchSetter.tsx",
+    "./UploadSetter": "./src/basic/UploadSetter.tsx",
+    "./CollapseSetter": "./src/group/CollapseSetter.tsx",
+    "./TabSetter": "./src/group/TabSetter.tsx"
+  },
+  "files": [
+    "dist",
+    "LICENSE",
+    "README.md"
+  ],
+  "publishConfig": {
+    "access": "public",
+    "main": "dist/index.js",
+    "module": "dist/index.esm.js",
+    "unpkg": "dist/index.min.js",
+    "jsdelivr": "dist/index.min.js",
+    "types": "dist/index.d.ts",
+    "exports": {
+      ".": {
+        "types": "./dist/index.d.ts",
+        "import": "./dist/index.esm.js",
+        "require": "./dist/index.cjs"
+      }
+    },
+    "registry": "https://registry.npmjs.org/"
+  },
+  "homepage": "https://github.com/Easy-Editor/EasySetters",
+  "license": "MIT",
+  "author": "JinSo <kimjinso@qq.com>",
+  "keywords": [
+    "@easy-editor",
+    "easyeditor",
+    "low-code",
+    "setter",
+    "property-editor",
+    "react"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Easy-Editor/EasySetters",
+    "directory": "packages/setters"
+  },
+  "bugs": {
+    "url": "https://github.com/Easy-Editor/EasySetters/issues"
+  },
+  "scripts": {
+    "format": "biome format --write .",
+    "lint": "biome check .",
+    "build": "npm-run-all -nl build:*",
+    "build:clean": "rimraf dist/",
+    "build:js": "rollup -c",
+    "types": "npm-run-all -nl types:*",
+    "types:src": "tsc --project tsconfig.build.json",
+    "test-types": "tsc --project tsconfig.test.json"
+  },
+  "peerDependencies": {
+    "@easy-editor/core": "*",
+    "@types/react": "^18 || ^19",
+    "@types/react-dom": "^18 || ^19",
+    "react": "^18 || ^19",
+    "react-dom": "^18 || ^19"
+  },
+  "devDependencies": {
+    "autoprefixer": "^10.4.22",
+    "postcss": "^8.5.6",
+    "rollup-plugin-postcss": "^4.0.2",
+    "tailwindcss": "^4.1.18",
+    "tailwindcss-animate": "^1.0.7"
+  },
+  "dependencies": {
+    "@radix-ui/react-collapsible": "^1.1.12",
+    "@radix-ui/react-label": "^2.1.8",
+    "@radix-ui/react-popover": "^1.1.15",
+    "@radix-ui/react-slot": "^1.2.4",
+    "@radix-ui/react-switch": "^1.2.6",
+    "@radix-ui/react-tabs": "^1.1.13",
+    "@uiw/react-color-sketch": "^2.9.2",
+    "class-variance-authority": "^0.7.1",
+    "clsx": "^2.1.1",
+    "lucide-react": "^0.561.0",
+    "tailwind-merge": "^3.4.0"
+  }
+}
