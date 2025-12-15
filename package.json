@@ -27,7 +27,6 @@
     "pub:version": "pnpm changeset version",
     "pub:release": "pnpm changeset publish"
   },
-  "packageManager": "pnpm@9.12.2",
   "engines": {
     "node": ">=18.0.0",
     "pnpm": ">=9.12.2"
