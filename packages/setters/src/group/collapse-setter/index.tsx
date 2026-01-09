@@ -14,7 +14,7 @@ const CollapseSetter = (props: CollapseSetterProps) => {
   const [isOpen, setIsOpen] = useState(initialValue ?? true)
 
   return (
-    <Collapsible className='-translate-x-4 w-[calc(100%_+_32px)] space-y-2' onOpenChange={setIsOpen} open={isOpen}>
+    <Collapsible className='w-[calc(100%_+_32px)] -translate-x-4 space-y-2' onOpenChange={setIsOpen} open={isOpen}>
       <div className='flex h-8 items-center justify-between space-x-4 bg-muted px-4'>
         <h4>{field.title}</h4>
         {!!icon && (

@@ -21,7 +21,7 @@ const RectSetter = (props: RectSetterProps) => {
         />
         <span
           aria-label={'Unit: X'}
-          className='-translate-y-1/2 pointer-events-none absolute top-1/2 right-3 text-muted-foreground'
+          className='pointer-events-none absolute top-1/2 right-3 -translate-y-1/2 text-muted-foreground'
         >
           X
         </span>
@@ -35,7 +35,7 @@ const RectSetter = (props: RectSetterProps) => {
         />
         <span
           aria-label={'Unit: Y'}
-          className='-translate-y-1/2 pointer-events-none absolute top-1/2 right-3 text-muted-foreground'
+          className='pointer-events-none absolute top-1/2 right-3 -translate-y-1/2 text-muted-foreground'
         >
           Y
         </span>
@@ -49,7 +49,7 @@ const RectSetter = (props: RectSetterProps) => {
         />
         <span
           aria-label={'Unit: W'}
-          className='-translate-y-1/2 pointer-events-none absolute top-1/2 right-3 text-muted-foreground'
+          className='pointer-events-none absolute top-1/2 right-3 -translate-y-1/2 text-muted-foreground'
         >
           W
         </span>
@@ -63,7 +63,7 @@ const RectSetter = (props: RectSetterProps) => {
         />
         <span
           aria-label={'Unit: H'}
-          className='-translate-y-1/2 pointer-events-none absolute top-1/2 right-3 text-muted-foreground'
+          className='pointer-events-none absolute top-1/2 right-3 -translate-y-1/2 text-muted-foreground'
         >
           H
         </span>

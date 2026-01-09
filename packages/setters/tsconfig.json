@@ -5,9 +5,9 @@
     "allowSyntheticDefaultImports": true,
     "baseUrl": ".",
     "paths": {
-      "@/*": ["./*"]
+      "@/*": ["./src/*"]
     }
   },
   "extends": "./tsconfig.build.json",
-  "include": ["./src", "./test"]
+  "include": ["./src", "./dev", "./test"]
 }

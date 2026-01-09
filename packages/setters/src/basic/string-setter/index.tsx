@@ -21,7 +21,7 @@ const StringSetter = (props: StringSetterProps) => {
       {!!suffix && (
         <span
           aria-label={`Unit: ${suffix}`}
-          className='-translate-y-1/2 pointer-events-none absolute top-1/2 right-3 text-muted-foreground'
+          className='pointer-events-none absolute top-1/2 right-3 -translate-y-1/2 text-muted-foreground'
         >
           {suffix}
         </span>

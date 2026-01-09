@@ -4,7 +4,7 @@
  */
 
 // Import styles
-import './styles.css'
+import './styles/global.css'
 
 // Basic Setters
 export { default as ColorSetter } from './basic/color-setter'
