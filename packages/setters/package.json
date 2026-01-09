@@ -1,6 +1,6 @@
 {
   "name": "@easy-editor/setters",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "Official setters library for EasyEditor - A collection of property setter components",
   "type": "module",
   "main": "src/index.ts",
@@ -56,6 +56,7 @@
     "lint": "biome check .",
     "build": "npm-run-all -nl build:*",
     "build:clean": "rimraf dist/",
+    "build:css": "npx @tailwindcss/cli -i src/styles/global.css -o dist/styles.css --minify",
     "build:js": "rollup -c",
     "build:types": "pnpm types",
     "types": "npm-run-all -nl types:*",
@@ -71,6 +72,7 @@
   },
   "devDependencies": {
     "@rollup/plugin-alias": "^5.1.1",
+    "@tailwindcss/cli": "^4.1.18",
     "@tailwindcss/postcss": "^4.1.18",
     "@types/events": "^3.0.3",
     "autoprefixer": "^10.4.23",

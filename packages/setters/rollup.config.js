@@ -5,7 +5,6 @@ import json from '@rollup/plugin-json'
 import alias from '@rollup/plugin-alias'
 import { terser } from 'rollup-plugin-terser'
 import cleanup from 'rollup-plugin-cleanup'
-import postcss from 'rollup-plugin-postcss'
 import path from 'node:path'
 import { fileURLToPath } from 'node:url'
 import pkg from './package.json' with { type: 'json' }
@@ -34,7 +33,7 @@ const aliasPlugin = alias({
   entries: [{ find: '@', replacement: path.resolve(__dirname, 'src') }],
 })
 
-// 基础插件（不含 CSS）
+// 基础插件
 const basePlugins = [
   aliasPlugin,
   nodeResolve({
@@ -61,32 +60,26 @@ const basePlugins = [
     comments: ['some', /PURE/],
     extensions: ['.js', '.ts'],
   }),
+  // 忽略 CSS 导入（CSS 由 Tailwind CLI 单独构建）
+  {
+    name: 'ignore-css',
+    resolveId(source) {
+      if (source.endsWith('.css')) {
+        return { id: source, external: true }
+      }
+      return null
+    },
+    load(id) {
+      if (id.endsWith('.css')) {
+        return ''
+      }
+      return null
+    },
+  },
 ]
 
-// CSS 提取插件（单独提取到 styles.css）
-const postcssExtract = postcss({
-  config: {
-    path: './postcss.config.js',
-  },
-  extensions: ['.css'],
-  minimize: true,
-  extract: 'styles.css', // 单独提取 CSS 文件
-})
-
-// CSS 内联插件（用于 UMD 构建，便于 CDN 使用）
-const postcssInline = postcss({
-  config: {
-    path: './postcss.config.js',
-  },
-  extensions: ['.css'],
-  minimize: true,
-  inject: {
-    insertAt: 'top',
-  },
-})
-
 export default [
-  // ESM 构建（用于现代打包工具，CSS 单独提取）
+  // ESM 构建（用于现代打包工具）
   {
     input: 'src/index.ts',
     output: [
@@ -96,10 +89,10 @@ export default [
         sourcemap: true,
       },
     ],
-    plugins: [...basePlugins, postcssExtract],
+    plugins: basePlugins,
     external,
   },
-  // UMD 构建（用于 CDN 和浏览器，CSS 内联）
+  // UMD 构建（用于 CDN 和浏览器）
   {
     input: 'src/index.ts',
     output: [
@@ -118,7 +111,7 @@ export default [
         exports: 'named',
       },
     ],
-    plugins: [...basePlugins, postcssInline],
+    plugins: basePlugins,
     external,
   },
   // CJS 构建（用于 Node.js）
@@ -132,10 +125,10 @@ export default [
         exports: 'named',
       },
     ],
-    plugins: [...basePlugins, postcssInline],
+    plugins: basePlugins,
     external,
   },
-  // 压缩版本（用于生产环境，CSS 内联）
+  // 压缩版本（用于生产环境）
   {
     input: 'src/index.ts',
     output: [
@@ -154,7 +147,7 @@ export default [
         exports: 'named',
       },
     ],
-    plugins: [...basePlugins, postcssInline, terser()],
+    plugins: [...basePlugins, terser()],
     external,
   },
 ]
