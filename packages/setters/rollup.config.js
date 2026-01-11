@@ -63,7 +63,12 @@ const basePlugins = [
     babelrc: false,
     babelHelpers: 'bundled',
     presets: [
-      ['@babel/preset-react', { runtime: 'automatic' }],
+      [
+        '@babel/preset-react',
+        {
+          runtime: 'classic', // 使用 React.createElement，兼容 React 18/19
+        },
+      ],
       [
         '@babel/preset-typescript',
         {

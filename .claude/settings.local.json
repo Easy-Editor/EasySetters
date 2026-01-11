@@ -7,7 +7,11 @@
       "Bash(dir:*)",
       "Bash(powershell:*)",
       "WebFetch(domain:www.npmjs.com)",
-      "Bash(pnpm build:*)"
+      "Bash(pnpm build:*)",
+      "Bash(rimraf:*)",
+      "Bash(rollup:*)",
+      "Bash(npx rimraf:*)",
+      "Bash(npx rollup:*)"
     ]
   }
 }

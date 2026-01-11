@@ -1,5 +1,11 @@
 # @easy-editor/setters
 
+## 0.0.6
+
+### Patch Changes
+
+- fix: jsx build error
+
 ## 0.0.5
 
 ### Patch Changes
