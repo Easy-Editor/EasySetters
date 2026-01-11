@@ -30,13 +30,6 @@ export type { UploadSetterProps, UploadValue } from './basic/upload-setter'
 export type { CollapseSetterProps } from './group/collapse-setter'
 export type { TabSetterProps } from './group/tab-setter'
 
-// Export common types
-export { SetterGroup } from './types'
-export type { SetterMetadata } from './types'
-
-// Export custom field item
-export { customFieldItem } from './custom-field-item'
-
 // Default setter map
 import ColorSetter from './basic/color-setter'
 import NodeIdSetter from './basic/node-id-setter'

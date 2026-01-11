@@ -1,4 +1,4 @@
-import { Switch } from '../../components/ui/switch'
+import { Switch } from '@/components/ui/switch'
 import type { SetterProps } from '@easy-editor/core'
 
 export interface SwitchSetterProps extends SetterProps<boolean> {}

@@ -1,4 +1,4 @@
-import { Input } from '../../components/ui/input'
+import { Input } from '@/components/ui/input'
 import type { SetterProps } from '@easy-editor/core'
 
 export interface RectSetterProps extends SetterProps<DOMRect> {}
@@ -12,9 +12,9 @@ const RectSetter = (props: RectSetterProps) => {
 
   return (
     <div className='flex w-full flex-wrap gap-2'>
-      <div className='relative w-[calc(50%_-_4px)]'>
+      <div className='relative w-[calc(50%-4px)]'>
         <Input
-          className='!text-xs h-8 px-2 py-[5px] pr-8 [-moz-appearance:textfield] [&::-webkit-inner-spin-button]:appearance-none [&::-webkit-outer-spin-button]:appearance-none'
+          className='h-8 px-2 py-[5px] pr-8 text-xs! [-moz-appearance:textfield] [&::-webkit-inner-spin-button]:appearance-none [&::-webkit-outer-spin-button]:appearance-none'
           onChange={e => handleChange('x', Number(e.target.value))}
           type='number'
           value={formatDecimal(value.x)}
@@ -26,9 +26,9 @@ const RectSetter = (props: RectSetterProps) => {
           X
         </span>
       </div>
-      <div className='relative w-[calc(50%_-_4px)]'>
+      <div className='relative w-[calc(50%-4px)]'>
         <Input
-          className='!text-xs h-8 px-2 py-[5px] pr-8 [-moz-appearance:textfield] [&::-webkit-inner-spin-button]:appearance-none [&::-webkit-outer-spin-button]:appearance-none'
+          className='h-8 px-2 py-[5px] pr-8 text-xs! [-moz-appearance:textfield] [&::-webkit-inner-spin-button]:appearance-none [&::-webkit-outer-spin-button]:appearance-none'
           onChange={e => handleChange('y', Number(e.target.value))}
           type='number'
           value={formatDecimal(value.y)}
@@ -40,9 +40,9 @@ const RectSetter = (props: RectSetterProps) => {
           Y
         </span>
       </div>
-      <div className='relative w-[calc(50%_-_4px)]'>
+      <div className='relative w-[calc(50%-4px)]'>
         <Input
-          className='!text-xs h-8 px-2 py-[5px] pr-8 [-moz-appearance:textfield] [&::-webkit-inner-spin-button]:appearance-none [&::-webkit-outer-spin-button]:appearance-none'
+          className='h-8 px-2 py-[5px] pr-8 text-xs! [-moz-appearance:textfield] [&::-webkit-inner-spin-button]:appearance-none [&::-webkit-outer-spin-button]:appearance-none'
           onChange={e => handleChange('width', Number(e.target.value))}
           type='number'
           value={formatDecimal(value.width)}
@@ -54,9 +54,9 @@ const RectSetter = (props: RectSetterProps) => {
           W
         </span>
       </div>
-      <div className='relative w-[calc(50%_-_4px)]'>
+      <div className='relative w-[calc(50%-4px)]'>
         <Input
-          className='!text-xs h-8 px-2 py-[5px] pr-8 [-moz-appearance:textfield] [&::-webkit-inner-spin-button]:appearance-none [&::-webkit-outer-spin-button]:appearance-none'
+          className='h-8 px-2 py-[5px] pr-8 text-xs! [-moz-appearance:textfield] [&::-webkit-inner-spin-button]:appearance-none [&::-webkit-outer-spin-button]:appearance-none'
           onChange={e => handleChange('height', Number(e.target.value))}
           type='number'
           value={formatDecimal(value.height)}

@@ -25,7 +25,8 @@
         "noBarrelFile": "off"
       },
       "style": {
-        "useConsistentTypeDefinitions": "off"
+        "useConsistentTypeDefinitions": "off",
+        "useFilenamingConvention": "info"
       },
       "a11y": {
         "useAriaPropsSupportedByRole": "off"

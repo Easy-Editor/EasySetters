@@ -1,4 +1,4 @@
-import { Tabs, TabsContent, TabsList, TabsTrigger } from '../../components/ui/tabs'
+import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs'
 import type { SetterProps } from '@easy-editor/core'
 import type { PropsWithChildren } from 'react'
 import React from 'react'
@@ -14,7 +14,9 @@ const TabSetter = (props: TabSetterProps) => {
   const { tabs, initialValue, children } = props
 
   const tabsList = React.useMemo(() => {
-    if (tabs) return tabs
+    if (tabs) {
+      return tabs
+    }
     if (Array.isArray(children) && children.length > 0) {
       return children.map(child => ({
         label: child.props.field.config.title,

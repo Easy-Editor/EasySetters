@@ -1,5 +1,5 @@
-import { Button } from '../../components/ui/button'
-import { Collapsible, CollapsibleContent, CollapsibleTrigger } from '../../components/ui/collapsible'
+import { Button } from '@/components/ui/button'
+import { Collapsible, CollapsibleContent, CollapsibleTrigger } from '@/components/ui/collapsible'
 import type { SetterProps } from '@easy-editor/core'
 import { ChevronsUpDown } from 'lucide-react'
 import type { PropsWithChildren } from 'react'
@@ -14,7 +14,7 @@ const CollapseSetter = (props: CollapseSetterProps) => {
   const [isOpen, setIsOpen] = useState(initialValue ?? true)
 
   return (
-    <Collapsible className='w-[calc(100%_+_32px)] -translate-x-4 space-y-2' onOpenChange={setIsOpen} open={isOpen}>
+    <Collapsible className='w-[calc(100%+32px)] -translate-x-4 space-y-2' onOpenChange={setIsOpen} open={isOpen}>
       <div className='flex h-8 items-center justify-between space-x-4 bg-muted px-4'>
         <h4>{field.title}</h4>
         {!!icon && (

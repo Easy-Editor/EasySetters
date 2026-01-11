@@ -1,5 +1,5 @@
-import { Button } from '../../components/ui/button'
-import { cn } from '../../lib/utils'
+import { Button } from '@/components/ui/button'
+import { cn } from '@/lib/utils'
 import type { SetterProps } from '@easy-editor/core'
 import { Upload, X } from 'lucide-react'
 import { useRef, useState } from 'react'

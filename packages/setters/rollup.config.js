@@ -5,14 +5,16 @@ import json from '@rollup/plugin-json'
 import alias from '@rollup/plugin-alias'
 import { terser } from 'rollup-plugin-terser'
 import cleanup from 'rollup-plugin-cleanup'
+import postcss from 'rollup-plugin-postcss'
+import tailwindcss from '@tailwindcss/postcss'
 import path from 'node:path'
 import { fileURLToPath } from 'node:url'
 import pkg from './package.json' with { type: 'json' }
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url))
 
-// 外部依赖（不打包进设置器）
-const external = [
+// ESM/CJS 外部依赖（npm 安装场景，依赖由用户项目提供）
+const esmExternal = [
   'react',
   'react-dom',
   'react/jsx-runtime',
@@ -26,7 +28,21 @@ const external = [
   '@radix-ui/react-dropdown-menu',
   '@uiw/react-color-sketch',
   'lucide-react',
+  'class-variance-authority',
+  'clsx',
+  'tailwind-merge',
 ]
+
+// UMD 外部依赖（CDN 场景，只排除 React 和 core，其他依赖打包进 bundle）
+const umdExternal = ['react', 'react-dom', 'react/jsx-runtime', '@easy-editor/core']
+
+// UMD 全局变量映射
+const umdGlobals = {
+  react: 'React',
+  'react-dom': 'ReactDOM',
+  'react/jsx-runtime': 'jsxRuntime',
+  '@easy-editor/core': 'EasyEditorCore',
+}
 
 // 路径别名插件
 const aliasPlugin = alias({
@@ -60,26 +76,16 @@ const basePlugins = [
     comments: ['some', /PURE/],
     extensions: ['.js', '.ts'],
   }),
-  // 忽略 CSS 导入（CSS 由 Tailwind CLI 单独构建）
-  {
-    name: 'ignore-css',
-    resolveId(source) {
-      if (source.endsWith('.css')) {
-        return { id: source, external: true }
-      }
-      return null
-    },
-    load(id) {
-      if (id.endsWith('.css')) {
-        return ''
-      }
-      return null
-    },
-  },
+  // 使用 PostCSS 处理 CSS（含 Tailwind CSS tree shaking）
+  postcss({
+    plugins: [tailwindcss()],
+    extract: 'styles.css',
+    minimize: true,
+  }),
 ]
 
 export default [
-  // ESM 构建（用于现代打包工具）
+  // ESM 构建（用于现代打包工具，如 Vite/Webpack）
   {
     input: 'src/index.ts',
     output: [
@@ -90,29 +96,7 @@ export default [
       },
     ],
     plugins: basePlugins,
-    external,
-  },
-  // UMD 构建（用于 CDN 和浏览器）
-  {
-    input: 'src/index.ts',
-    output: [
-      {
-        file: 'dist/index.js',
-        format: 'umd',
-        name: 'EasyEditorSetters',
-        globals: {
-          react: 'React',
-          'react-dom': 'ReactDOM',
-          'react/jsx-runtime': 'jsxRuntime',
-          '@easy-editor/core': 'EasyEditorCore',
-        },
-        sourcemap: true,
-        banner: `/* @easy-editor/setters v${pkg.version} */`,
-        exports: 'named',
-      },
-    ],
-    plugins: basePlugins,
-    external,
+    external: esmExternal,
   },
   // CJS 构建（用于 Node.js）
   {
@@ -126,9 +110,26 @@ export default [
       },
     ],
     plugins: basePlugins,
-    external,
+    external: esmExternal,
   },
-  // 压缩版本（用于生产环境）
+  // UMD 构建（用于 CDN 和浏览器，打包所有依赖）
+  {
+    input: 'src/index.ts',
+    output: [
+      {
+        file: 'dist/index.js',
+        format: 'umd',
+        name: 'EasyEditorSetters',
+        globals: umdGlobals,
+        sourcemap: true,
+        banner: `/* @easy-editor/setters v${pkg.version} */`,
+        exports: 'named',
+      },
+    ],
+    plugins: basePlugins,
+    external: umdExternal,
+  },
+  // UMD 压缩版本（用于生产环境 CDN）
   {
     input: 'src/index.ts',
     output: [
@@ -136,18 +137,13 @@ export default [
         file: 'dist/index.min.js',
         format: 'umd',
         name: 'EasyEditorSetters',
-        globals: {
-          react: 'React',
-          'react-dom': 'ReactDOM',
-          'react/jsx-runtime': 'jsxRuntime',
-          '@easy-editor/core': 'EasyEditorCore',
-        },
+        globals: umdGlobals,
         sourcemap: true,
         banner: `/* @easy-editor/setters v${pkg.version} (minified) */`,
         exports: 'named',
       },
     ],
     plugins: [...basePlugins, terser()],
-    external,
+    external: umdExternal,
   },
 ]

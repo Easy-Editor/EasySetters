@@ -1,6 +1,10 @@
 @import "tailwindcss";
 @import "tw-animate-css";
 
+/* Tree shaking: 只扫描 src 目录下的组件 */
+@source "../**/*.tsx";
+@source "../**/*.ts";
+
 @custom-variant dark (&:is(.dark *));
 
 :root {

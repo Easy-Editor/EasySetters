@@ -1,5 +1,5 @@
-import { Button } from '../../components/ui/button'
-import { Popover, PopoverContent, PopoverTrigger } from '../../components/ui/popover'
+import { Button } from '@/components/ui/button'
+import { Popover, PopoverContent, PopoverTrigger } from '@/components/ui/popover'
 import type { SetterProps } from '@easy-editor/core'
 import Sketch from '@uiw/react-color-sketch'
 
