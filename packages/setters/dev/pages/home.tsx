@@ -9,34 +9,28 @@ export function HomePage() {
   const groupDemos = demos.filter(d => d.group === 'group')
 
   return (
-    <div className='space-y-8'>
-      <section>
-        <h2 className='mb-4 font-semibold text-lg'>基础设置器</h2>
-        <div className='grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3'>
+    <div className='dev-home'>
+      <h2>EasySetters 组件库</h2>
+
+      <section className='dev-home-section'>
+        <h3>基础设置器</h3>
+        <div className='dev-home-grid'>
           {basicDemos.map(({ name, slug, description }) => (
-            <Link
-              className='block rounded-lg border bg-card p-4 transition-colors hover:border-primary'
-              key={slug}
-              to={`/${slug}`}
-            >
-              <h3 className='mb-1 font-medium'>{name}</h3>
-              {description ? <p className='text-muted-foreground text-sm'>{description}</p> : null}
+            <Link className='dev-home-card' key={slug} to={`/${slug}`}>
+              <h4>{name}</h4>
+              {description ? <p>{description}</p> : null}
             </Link>
           ))}
         </div>
       </section>
 
-      <section>
-        <h2 className='mb-4 font-semibold text-lg'>分组设置器</h2>
-        <div className='grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3'>
+      <section className='dev-home-section'>
+        <h3>分组设置器</h3>
+        <div className='dev-home-grid'>
           {groupDemos.map(({ name, slug, description }) => (
-            <Link
-              className='block rounded-lg border bg-card p-4 transition-colors hover:border-primary'
-              key={slug}
-              to={`/${slug}`}
-            >
-              <h3 className='mb-1 font-medium'>{name}</h3>
-              {description ? <p className='text-muted-foreground text-sm'>{description}</p> : null}
+            <Link className='dev-home-card' key={slug} to={`/${slug}`}>
+              <h4>{name}</h4>
+              {description ? <p>{description}</p> : null}
             </Link>
           ))}
         </div>

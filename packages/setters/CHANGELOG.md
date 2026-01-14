@@ -1,5 +1,11 @@
 # @easy-editor/setters
 
+## 0.1.0
+
+### Minor Changes
+
+- feat: add new setters
+
 ## 0.0.6
 
 ### Patch Changes

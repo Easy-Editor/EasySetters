@@ -15,6 +15,8 @@ export default defineConfig({
     },
   },
   css: {
-    postcss: resolve(__dirname, 'postcss.config.mjs'),
+    modules: {
+      generateScopedName: 'es-[local]-[hash:base64:5]',
+    },
   },
 })

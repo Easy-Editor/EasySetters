@@ -1,0 +1,35 @@
+.container {
+  width: 100%;
+}
+
+.textarea {
+  width: 100%;
+  min-height: 5rem;
+  padding: var(--es-spacing-2);
+  font-family:
+    ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, "Liberation Mono",
+    monospace;
+  font-size: var(--es-text-xs);
+  line-height: 1.5;
+  background-color: var(--es-background);
+  border: 1px solid var(--es-input);
+  border-radius: var(--es-radius-sm);
+  color: var(--es-foreground);
+  outline: none;
+  resize: vertical;
+  transition: border-color var(--es-transition);
+}
+
+.textarea:focus {
+  border-color: var(--es-ring);
+}
+
+.textareaError {
+  border-color: var(--es-destructive);
+}
+
+.error {
+  margin-top: var(--es-spacing-1);
+  font-size: var(--es-text-xs);
+  color: var(--es-destructive);
+}

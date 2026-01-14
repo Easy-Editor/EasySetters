@@ -1,0 +1,51 @@
+.trigger {
+  display: flex;
+  align-items: center;
+  gap: var(--es-spacing-2);
+  width: 100%;
+  height: 2rem;
+  padding: var(--es-spacing-1) var(--es-spacing-2);
+  background-color: transparent;
+  border: 1px solid var(--es-input);
+  border-radius: var(--es-radius-sm);
+  font-size: var(--es-text-xs);
+  color: var(--es-foreground);
+  text-align: left;
+  cursor: pointer;
+  transition: border-color var(--es-transition);
+}
+
+.trigger:hover {
+  border-color: var(--es-ring);
+}
+
+.colorPreview {
+  width: 0.875rem;
+  height: 0.875rem;
+  border: 1px solid var(--es-muted-foreground);
+  border-radius: 9999px;
+}
+
+.colorValue {
+  flex: 1;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  font-family: monospace;
+}
+
+.popover {
+  position: absolute;
+  z-index: 50;
+  margin-top: var(--es-spacing-1);
+  background-color: var(--es-popover);
+  border: 1px solid var(--es-border);
+  border-radius: var(--es-radius);
+  box-shadow:
+    0 4px 6px -1px rgba(0, 0, 0, 0.1),
+    0 2px 4px -2px rgba(0, 0, 0, 0.1);
+}
+
+.popoverHidden {
+  display: none;
+}

@@ -1,0 +1,61 @@
+/* EasySetters 主题变量 - 使用 --es- 命名空间 */
+:root {
+  /* 颜色 */
+  --es-background: #ffffff;
+  --es-foreground: #09090b;
+  --es-primary: #18181b;
+  --es-primary-foreground: #fafafa;
+  --es-secondary: #f4f4f5;
+  --es-secondary-foreground: #18181b;
+  --es-muted: #f4f4f5;
+  --es-muted-foreground: #71717a;
+  --es-accent: #f4f4f5;
+  --es-accent-foreground: #18181b;
+  --es-destructive: #ef4444;
+  --es-destructive-foreground: #fafafa;
+  --es-border: #e4e4e7;
+  --es-input: #e4e4e7;
+  --es-ring: #18181b;
+  --es-popover: #ffffff;
+  --es-popover-foreground: #09090b;
+
+  /* 圆角 */
+  --es-radius: 0.5rem;
+  --es-radius-sm: 0.25rem;
+  --es-radius-lg: 0.75rem;
+
+  /* 间距 */
+  --es-spacing-1: 0.25rem;
+  --es-spacing-2: 0.5rem;
+  --es-spacing-3: 0.75rem;
+  --es-spacing-4: 1rem;
+
+  /* 字体大小 */
+  --es-text-xs: 0.75rem;
+  --es-text-sm: 0.875rem;
+  --es-text-base: 1rem;
+
+  /* 过渡 */
+  --es-transition: 150ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* 暗色主题 */
+.dark {
+  --es-background: #09090b;
+  --es-foreground: #fafafa;
+  --es-primary: #fafafa;
+  --es-primary-foreground: #18181b;
+  --es-secondary: #27272a;
+  --es-secondary-foreground: #fafafa;
+  --es-muted: #27272a;
+  --es-muted-foreground: #a1a1aa;
+  --es-accent: #27272a;
+  --es-accent-foreground: #fafafa;
+  --es-destructive: #7f1d1d;
+  --es-destructive-foreground: #fafafa;
+  --es-border: #27272a;
+  --es-input: #27272a;
+  --es-ring: #d4d4d8;
+  --es-popover: #09090b;
+  --es-popover-foreground: #fafafa;
+}

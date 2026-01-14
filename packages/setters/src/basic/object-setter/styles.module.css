@@ -1,0 +1,127 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  gap: var(--es-spacing-3);
+  width: 100%;
+}
+
+.field {
+  display: flex;
+  flex-direction: column;
+  gap: var(--es-spacing-1);
+}
+
+.label {
+  font-size: var(--es-text-xs);
+  color: var(--es-muted-foreground);
+}
+
+.input {
+  width: 100%;
+  height: 2rem;
+  padding: var(--es-spacing-1) var(--es-spacing-2);
+  font-size: var(--es-text-xs);
+  background-color: var(--es-background);
+  border: 1px solid var(--es-input);
+  border-radius: var(--es-radius-sm);
+  color: var(--es-foreground);
+  outline: none;
+  transition: border-color var(--es-transition);
+  -moz-appearance: textfield;
+}
+
+.input::-webkit-inner-spin-button,
+.input::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+.input:focus {
+  border-color: var(--es-ring);
+}
+
+.input::placeholder {
+  color: var(--es-muted-foreground);
+}
+
+.customField {
+  display: flex;
+  align-items: flex-end;
+  gap: var(--es-spacing-1);
+}
+
+.customFieldInputs {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  gap: var(--es-spacing-1);
+}
+
+.keyInput {
+  height: 1.5rem;
+  padding: var(--es-spacing-1) var(--es-spacing-2);
+  font-size: var(--es-text-xs);
+  background-color: var(--es-background);
+  border: 1px solid var(--es-input);
+  border-radius: var(--es-radius-sm);
+  color: var(--es-muted-foreground);
+  outline: none;
+  transition: border-color var(--es-transition);
+}
+
+.keyInput:focus {
+  border-color: var(--es-ring);
+}
+
+.removeButton {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 2rem;
+  height: 2rem;
+  flex-shrink: 0;
+  background: transparent;
+  border: none;
+  border-radius: var(--es-radius-sm);
+  color: var(--es-muted-foreground);
+  cursor: pointer;
+  transition: color var(--es-transition);
+}
+
+.removeButton:hover {
+  color: var(--es-destructive);
+}
+
+.removeIcon {
+  width: 1rem;
+  height: 1rem;
+}
+
+.addButton {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--es-spacing-1);
+  width: 100%;
+  height: 2rem;
+  padding: 0 var(--es-spacing-3);
+  font-size: var(--es-text-xs);
+  background-color: transparent;
+  border: 1px solid var(--es-border);
+  border-radius: var(--es-radius-sm);
+  color: var(--es-foreground);
+  cursor: pointer;
+  transition:
+    background-color var(--es-transition),
+    border-color var(--es-transition);
+}
+
+.addButton:hover {
+  background-color: var(--es-accent);
+  border-color: var(--es-accent);
+}
+
+.addIcon {
+  width: 1rem;
+  height: 1rem;
+}

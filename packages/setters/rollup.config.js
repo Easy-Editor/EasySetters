@@ -6,7 +6,6 @@ import alias from '@rollup/plugin-alias'
 import { terser } from 'rollup-plugin-terser'
 import cleanup from 'rollup-plugin-cleanup'
 import postcss from 'rollup-plugin-postcss'
-import tailwindcss from '@tailwindcss/postcss'
 import path from 'node:path'
 import { fileURLToPath } from 'node:url'
 import pkg from './package.json' with { type: 'json' }
@@ -14,24 +13,7 @@ import pkg from './package.json' with { type: 'json' }
 const __dirname = path.dirname(fileURLToPath(import.meta.url))
 
 // ESM/CJS 外部依赖（npm 安装场景，依赖由用户项目提供）
-const esmExternal = [
-  'react',
-  'react-dom',
-  'react/jsx-runtime',
-  '@easy-editor/core',
-  '@radix-ui/react-slot',
-  '@radix-ui/react-label',
-  '@radix-ui/react-popover',
-  '@radix-ui/react-switch',
-  '@radix-ui/react-collapsible',
-  '@radix-ui/react-tabs',
-  '@radix-ui/react-dropdown-menu',
-  '@uiw/react-color-sketch',
-  'lucide-react',
-  'class-variance-authority',
-  'clsx',
-  'tailwind-merge',
-]
+const esmExternal = ['react', 'react-dom', 'react/jsx-runtime', '@easy-editor/core']
 
 // UMD 外部依赖（CDN 场景，只排除 React 和 core，其他依赖打包进 bundle）
 const umdExternal = ['react', 'react-dom', 'react/jsx-runtime', '@easy-editor/core']
@@ -53,7 +35,7 @@ const aliasPlugin = alias({
 const basePlugins = [
   aliasPlugin,
   nodeResolve({
-    extensions: ['.js', '.ts', '.jsx', '.tsx'],
+    extensions: ['.js', '.ts', '.jsx', '.tsx', '.css'],
   }),
   commonjs(),
   json(),
@@ -81,10 +63,12 @@ const basePlugins = [
     comments: ['some', /PURE/],
     extensions: ['.js', '.ts'],
   }),
-  // 使用 PostCSS 处理 CSS（含 Tailwind CSS tree shaking）
+  // 使用 PostCSS + CSS Modules 处理样式
   postcss({
-    plugins: [tailwindcss()],
-    extract: 'styles.css',
+    modules: {
+      generateScopedName: 'es-[local]-[hash:base64:5]',
+    },
+    extract: 'index.css',
     minimize: true,
   }),
 ]
@@ -98,6 +82,7 @@ export default [
         file: 'dist/index.esm.js',
         format: 'esm',
         sourcemap: true,
+        assetFileNames: '[name][extname]',
       },
     ],
     plugins: basePlugins,
@@ -112,6 +97,7 @@ export default [
         format: 'cjs',
         sourcemap: true,
         exports: 'named',
+        assetFileNames: '[name][extname]',
       },
     ],
     plugins: basePlugins,
@@ -129,6 +115,7 @@ export default [
         sourcemap: true,
         banner: `/* @easy-editor/setters v${pkg.version} */`,
         exports: 'named',
+        assetFileNames: '[name][extname]',
       },
     ],
     plugins: basePlugins,
@@ -146,6 +133,7 @@ export default [
         sourcemap: true,
         banner: `/* @easy-editor/setters v${pkg.version} (minified) */`,
         exports: 'named',
+        assetFileNames: '[name][extname]',
       },
     ],
     plugins: [...basePlugins, terser()],

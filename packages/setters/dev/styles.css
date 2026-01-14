@@ -1,0 +1,252 @@
+/* Dev 环境样式 */
+:root {
+  --dev-background: #ffffff;
+  --dev-foreground: #09090b;
+  --dev-card: #ffffff;
+  --dev-card-foreground: #09090b;
+  --dev-primary: #18181b;
+  --dev-primary-foreground: #fafafa;
+  --dev-muted: #f4f4f5;
+  --dev-muted-foreground: #71717a;
+  --dev-border: #e4e4e7;
+}
+
+.dark {
+  --dev-background: #09090b;
+  --dev-foreground: #fafafa;
+  --dev-card: #09090b;
+  --dev-card-foreground: #fafafa;
+  --dev-primary: #fafafa;
+  --dev-primary-foreground: #18181b;
+  --dev-muted: #27272a;
+  --dev-muted-foreground: #a1a1aa;
+  --dev-border: #27272a;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family:
+    -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue",
+    Arial, sans-serif;
+  background-color: var(--dev-background);
+  color: var(--dev-foreground);
+}
+
+/* Layout */
+.dev-app {
+  display: flex;
+  min-height: 100vh;
+  background-color: var(--dev-background);
+}
+
+.dev-nav {
+  width: 12rem;
+  flex-shrink: 0;
+  padding: 1rem;
+  border-right: 1px solid var(--dev-border);
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.dev-nav-section {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+.dev-nav-title {
+  font-size: 0.75rem;
+  font-weight: 500;
+  color: var(--dev-muted-foreground);
+  margin-bottom: 0.5rem;
+}
+
+.dev-nav-link {
+  display: block;
+  padding: 0.375rem 0.75rem;
+  font-size: 0.875rem;
+  border-radius: 0.25rem;
+  text-decoration: none;
+  color: var(--dev-foreground);
+  transition: background-color 0.15s;
+}
+
+.dev-nav-link:hover {
+  background-color: var(--dev-muted);
+}
+
+.dev-nav-link.active {
+  background-color: var(--dev-primary);
+  color: var(--dev-primary-foreground);
+}
+
+.dev-content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.dev-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.75rem 1.5rem;
+  border-bottom: 1px solid var(--dev-border);
+}
+
+.dev-header h1 {
+  font-size: 1.125rem;
+  font-weight: 700;
+}
+
+.dev-main {
+  flex: 1;
+  padding: 1.5rem;
+  overflow: auto;
+}
+
+/* Theme Toggle */
+.dev-theme-toggle {
+  display: flex;
+  gap: 0.25rem;
+}
+
+.dev-theme-btn {
+  padding: 0.5rem;
+  border: 1px solid var(--dev-border);
+  border-radius: 0.25rem;
+  background: transparent;
+  color: var(--dev-foreground);
+  cursor: pointer;
+  transition: background-color 0.15s;
+}
+
+.dev-theme-btn:hover {
+  background-color: var(--dev-muted);
+}
+
+.dev-theme-btn.active {
+  background-color: var(--dev-primary);
+  color: var(--dev-primary-foreground);
+}
+
+/* Setter Demo */
+.dev-setter-demo {
+  border: 1px solid var(--dev-border);
+  border-radius: 0.5rem;
+  padding: 1rem;
+  background-color: var(--dev-card);
+}
+
+.dev-setter-demo h3 {
+  font-size: 0.875rem;
+  font-weight: 500;
+  margin-bottom: 0.25rem;
+  color: var(--dev-foreground);
+}
+
+.dev-setter-demo p {
+  font-size: 0.75rem;
+  color: var(--dev-muted-foreground);
+  margin-bottom: 0.75rem;
+}
+
+.dev-setter-content {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.dev-setter-value {
+  margin-top: 0.75rem;
+  padding: 0.5rem;
+  background-color: var(--dev-muted);
+  border-radius: 0.25rem;
+}
+
+.dev-setter-value-label {
+  font-size: 0.75rem;
+  font-weight: 500;
+  color: var(--dev-muted-foreground);
+  margin-bottom: 0.25rem;
+}
+
+.dev-setter-value pre {
+  font-size: 0.75rem;
+  overflow: auto;
+  white-space: pre-wrap;
+  word-break: break-all;
+}
+
+/* Home Page */
+.dev-home {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.dev-home h2 {
+  font-size: 1.5rem;
+  font-weight: 700;
+}
+
+.dev-home-section h3 {
+  font-size: 1rem;
+  font-weight: 600;
+  margin-bottom: 0.75rem;
+  color: var(--dev-muted-foreground);
+}
+
+.dev-home-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 0.75rem;
+}
+
+.dev-home-card {
+  display: block;
+  padding: 1rem;
+  border: 1px solid var(--dev-border);
+  border-radius: 0.5rem;
+  text-decoration: none;
+  color: var(--dev-foreground);
+  transition: border-color 0.15s;
+}
+
+.dev-home-card:hover {
+  border-color: var(--dev-primary);
+}
+
+.dev-home-card h4 {
+  font-size: 0.875rem;
+  font-weight: 500;
+  margin-bottom: 0.25rem;
+}
+
+.dev-home-card p {
+  font-size: 0.75rem;
+  color: var(--dev-muted-foreground);
+}
+
+/* Page */
+.dev-page {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.dev-page h2 {
+  font-size: 1.25rem;
+  font-weight: 600;
+}
+
+.dev-page-desc {
+  font-size: 0.875rem;
+  color: var(--dev-muted-foreground);
+}

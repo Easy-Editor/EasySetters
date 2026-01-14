@@ -9,18 +9,16 @@ interface SetterDemoProps {
   fullWidth?: boolean
 }
 
-export function SetterDemo({ title, description, currentValue, children, fullWidth }: SetterDemoProps) {
+export function SetterDemo({ title, description, currentValue, children }: SetterDemoProps) {
   return (
-    <div className={`rounded-lg border bg-card p-4 ${fullWidth ? 'w-full' : ''}`}>
-      <h3 className='mb-1 font-medium text-foreground text-sm'>{title}</h3>
-      {description ? <p className='mb-3 text-muted-foreground text-xs'>{description}</p> : null}
-      <div className='space-y-2'>{children}</div>
+    <div className='dev-setter-demo'>
+      <h3>{title}</h3>
+      {description ? <p>{description}</p> : null}
+      <div className='dev-setter-content'>{children}</div>
       {currentValue !== undefined ? (
-        <div className='mt-3 rounded bg-muted p-2'>
-          <div className='mb-1 font-medium text-muted-foreground text-xs'>当前值:</div>
-          <pre className='overflow-auto text-xs'>
-            {typeof currentValue === 'object' ? JSON.stringify(currentValue, null, 2) : String(currentValue)}
-          </pre>
+        <div className='dev-setter-value'>
+          <div className='dev-setter-value-label'>当前值:</div>
+          <pre>{typeof currentValue === 'object' ? JSON.stringify(currentValue, null, 2) : String(currentValue)}</pre>
         </div>
       ) : null}
     </div>

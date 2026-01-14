@@ -1,9 +1,9 @@
-import { Button } from '@/components/ui/button'
-import { Collapsible, CollapsibleContent, CollapsibleTrigger } from '@/components/ui/collapsible'
+import { cn } from '@/lib/utils'
 import type { SetterProps } from '@easy-editor/core'
 import { ChevronsUpDown } from 'lucide-react'
 import type { PropsWithChildren } from 'react'
 import { useState } from 'react'
+import styles from './styles.module.css'
 
 export interface CollapseSetterProps extends SetterProps<boolean>, PropsWithChildren {
   icon?: boolean
@@ -14,20 +14,23 @@ const CollapseSetter = (props: CollapseSetterProps) => {
   const [isOpen, setIsOpen] = useState(initialValue ?? true)
 
   return (
-    <Collapsible className='w-[calc(100%+32px)] -translate-x-4 space-y-2' onOpenChange={setIsOpen} open={isOpen}>
-      <div className='flex h-8 items-center justify-between space-x-4 bg-muted px-4'>
-        <h4>{field.title}</h4>
-        {!!icon && (
-          <CollapsibleTrigger asChild>
-            <Button size='sm' variant='ghost'>
-              <ChevronsUpDown className='h-4 w-4' />
-              <span className='sr-only'>Toggle</span>
-            </Button>
-          </CollapsibleTrigger>
-        )}
+    <div className={styles.container}>
+      <div className={styles.header}>
+        <h4 className={styles.title}>{field.title}</h4>
+        {icon ? (
+          <button
+            aria-expanded={isOpen}
+            className={styles.toggleButton}
+            onClick={() => setIsOpen(!isOpen)}
+            type='button'
+          >
+            <ChevronsUpDown className={styles.toggleIcon} />
+            <span className={styles.srOnly}>Toggle</span>
+          </button>
+        ) : null}
       </div>
-      <CollapsibleContent className='space-y-3 px-4 py-2'>{children}</CollapsibleContent>
-    </Collapsible>
+      <div className={cn(styles.content, isOpen === false ? styles.contentHidden : '')}>{children}</div>
+    </div>
   )
 }
 

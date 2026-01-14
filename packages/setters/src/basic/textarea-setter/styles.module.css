@@ -1,0 +1,33 @@
+.container {
+  width: 100%;
+}
+
+.textarea {
+  width: 100%;
+  min-height: 60px;
+  padding: var(--es-spacing-2);
+  font-size: var(--es-text-xs);
+  font-family: inherit;
+  background-color: var(--es-background);
+  border: 1px solid var(--es-input);
+  border-radius: var(--es-radius-sm);
+  color: var(--es-foreground);
+  resize: vertical;
+  outline: none;
+  transition: border-color var(--es-transition);
+}
+
+.textarea:focus {
+  border-color: var(--es-ring);
+}
+
+.textarea::placeholder {
+  color: var(--es-muted-foreground);
+}
+
+.counter {
+  margin-top: var(--es-spacing-1);
+  text-align: right;
+  font-size: var(--es-text-xs);
+  color: var(--es-muted-foreground);
+}

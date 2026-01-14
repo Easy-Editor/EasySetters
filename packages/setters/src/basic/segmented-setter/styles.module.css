@@ -1,0 +1,46 @@
+.container {
+  display: inline-flex;
+  padding: 2px;
+  background-color: var(--es-muted);
+  border-radius: var(--es-radius);
+  gap: 2px;
+}
+
+.containerSm {
+  padding: 1px;
+  gap: 1px;
+}
+
+.segment {
+  flex: 1;
+  padding: var(--es-spacing-1) var(--es-spacing-3);
+  font-size: var(--es-text-sm);
+  font-weight: 500;
+  color: var(--es-muted-foreground);
+  background: transparent;
+  border: none;
+  border-radius: calc(var(--es-radius) - 2px);
+  cursor: pointer;
+  transition: all var(--es-transition);
+  white-space: nowrap;
+}
+
+.containerSm .segment {
+  padding: var(--es-spacing-1) var(--es-spacing-2);
+  font-size: var(--es-text-xs);
+}
+
+.segment:hover:not(:disabled) {
+  color: var(--es-foreground);
+}
+
+.segmentSelected {
+  background-color: var(--es-background);
+  color: var(--es-foreground);
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+}
+
+.segmentDisabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}

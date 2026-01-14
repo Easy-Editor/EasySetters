@@ -1,0 +1,132 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  gap: var(--es-spacing-2);
+}
+
+.boxModel {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 6rem;
+  border: 1px solid var(--es-border);
+  border-radius: var(--es-radius);
+  background-color: color-mix(in srgb, var(--es-muted) 30%, transparent);
+}
+
+.inputTop {
+  position: absolute;
+  top: var(--es-spacing-1);
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.inputRight {
+  position: absolute;
+  top: 50%;
+  right: var(--es-spacing-1);
+  transform: translateY(-50%);
+}
+
+.inputBottom {
+  position: absolute;
+  bottom: var(--es-spacing-1);
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.inputLeft {
+  position: absolute;
+  top: 50%;
+  left: var(--es-spacing-1);
+  transform: translateY(-50%);
+}
+
+.spacingInput {
+  width: 3rem;
+  height: 1.5rem;
+  padding: 0 var(--es-spacing-1);
+  font-size: var(--es-text-xs);
+  text-align: center;
+  background-color: var(--es-background);
+  border: 1px solid var(--es-input);
+  border-radius: var(--es-radius-sm);
+  color: var(--es-foreground);
+  outline: none;
+  transition: border-color var(--es-transition);
+  -moz-appearance: textfield;
+}
+
+.spacingInput::-webkit-inner-spin-button,
+.spacingInput::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+.spacingInput:focus {
+  border-color: var(--es-ring);
+}
+
+.linkButton {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 2rem;
+  height: 2rem;
+  padding: 0;
+  background-color: transparent;
+  border: 1px solid var(--es-border);
+  border-radius: var(--es-radius-sm);
+  color: var(--es-foreground);
+  cursor: pointer;
+  transition: all var(--es-transition);
+}
+
+.linkButton:hover {
+  background-color: var(--es-accent);
+}
+
+.linkButtonActive {
+  background-color: var(--es-primary);
+  border-color: var(--es-primary);
+  color: var(--es-primary-foreground);
+}
+
+.linkButtonActive:hover {
+  background-color: var(--es-primary);
+}
+
+.linkIcon {
+  width: 1rem;
+  height: 1rem;
+}
+
+.presets {
+  display: flex;
+  gap: var(--es-spacing-1);
+}
+
+.presetButton {
+  flex: 1;
+  height: 1.5rem;
+  padding: 0;
+  font-size: var(--es-text-xs);
+  background-color: transparent;
+  border: 1px solid var(--es-border);
+  border-radius: var(--es-radius-sm);
+  color: var(--es-foreground);
+  cursor: pointer;
+  transition: all var(--es-transition);
+}
+
+.presetButton:hover {
+  background-color: var(--es-accent);
+  border-color: var(--es-accent);
+}
+
+.modeLabel {
+  text-align: center;
+  font-size: var(--es-text-xs);
+  color: var(--es-muted-foreground);
+}

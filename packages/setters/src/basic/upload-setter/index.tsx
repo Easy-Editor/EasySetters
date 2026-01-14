@@ -1,8 +1,7 @@
-import { Button } from '@/components/ui/button'
-import { cn } from '@/lib/utils'
 import type { SetterProps } from '@easy-editor/core'
 import { Upload, X } from 'lucide-react'
 import { useRef, useState } from 'react'
+import styles from './styles.module.css'
 
 export interface UploadValue {
   raw: {
@@ -34,7 +33,6 @@ const UploadSetter = (props: UploadSetterProps) => {
       return
     }
 
-    // 验证文件类型
     const ext = `.${file.name.split('.').pop()?.toLowerCase()}`
     if (!accept.includes(ext)) {
       setError(`仅支持 ${accept} 格式文件`)
@@ -42,7 +40,6 @@ const UploadSetter = (props: UploadSetterProps) => {
       return
     }
 
-    // 验证文件大小
     if (file.size > maxSize) {
       setError(`文件大小不能超过 ${maxSize / 1024 / 1024}MB`)
       onChange(null)
@@ -51,14 +48,12 @@ const UploadSetter = (props: UploadSetterProps) => {
 
     try {
       const [base64, dimensions] = await Promise.all([
-        // 读取Base64
         new Promise<string>((resolve, reject) => {
           const reader = new FileReader()
           reader.onload = () => resolve(reader.result as string)
           reader.onerror = err => reject(err)
           reader.readAsDataURL(file)
         }),
-        // 读取图片尺寸
         new Promise<{ width: number; height: number }>((resolve, reject) => {
           const img = new Image()
           img.onload = () =>
@@ -95,54 +90,41 @@ const UploadSetter = (props: UploadSetterProps) => {
   }
 
   return (
-    <div className='group relative w-full overflow-hidden'>
-      <div className='flex gap-2'>
-        <label className='flex-1 cursor-pointer'>
+    <div className={styles.container}>
+      <div className={styles.row}>
+        <label className={styles.label}>
           <input
             accept={accept}
-            className={cn(
-              'h-8 cursor-pointer px-2 py-[5px] text-xs',
-              'border-dashed transition-colors hover:border-primary',
-              'absolute h-0 w-0 opacity-0',
-            )}
+            className={styles.hiddenInput}
             onChange={handleFileChange}
             ref={inputRef}
             type='file'
           />
-          <div className='flex h-8 w-full items-center justify-center rounded-md border border-dashed text-muted-foreground text-xs transition-colors hover:border-primary'>
-            <Upload className='mr-2 h-4 w-4' />
+          <div className={styles.uploadArea}>
+            <Upload className={styles.uploadIcon} />
             <span>{value ? '更换文件' : '点击上传'}</span>
           </div>
         </label>
 
-        {!!value && (
-          <Button
-            aria-label='清除文件'
-            className='h-8 px-2 text-muted-foreground hover:text-destructive'
-            onClick={handleClear}
-            size='sm'
-            type='button'
-            variant='ghost'
-          >
-            <X className='h-4 w-4' />
-          </Button>
-        )}
+        {value ? (
+          <button aria-label='清除文件' className={styles.clearButton} onClick={handleClear} type='button'>
+            <X className={styles.clearIcon} />
+          </button>
+        ) : null}
       </div>
 
-      {!!value && (
-        <div className='mt-2 flex w-full items-center gap-2 text-foreground/80 text-xs'>
-          <span className='min-w-0 flex-1 truncate'>{value.raw?.name}</span>
-          <span className='shrink-0 whitespace-nowrap text-muted-foreground/50'>
-            {(value.raw?.size / 1024).toFixed(1)}KB
-          </span>
+      {value ? (
+        <div className={styles.fileInfo}>
+          <span className={styles.fileName}>{value.raw?.name}</span>
+          <span className={styles.fileSize}>{(value.raw?.size / 1024).toFixed(1)}KB</span>
         </div>
-      )}
+      ) : null}
 
-      {!!error && (
-        <p className='mt-1 text-destructive text-xs' role='alert'>
+      {error ? (
+        <p className={styles.error} role='alert'>
           {error}
         </p>
-      )}
+      ) : null}
     </div>
   )
 }

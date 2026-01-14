@@ -7,14 +7,14 @@ import { ModeToggle } from '../mode-toggle'
 
 export function Layout() {
   return (
-    <div className='flex min-h-screen bg-background'>
+    <div className='dev-app'>
       <Nav />
-      <div className='flex flex-1 flex-col'>
-        <header className='flex items-center justify-between border-b px-6 py-3'>
-          <h1 className='font-bold text-lg'>EasySetters Dev</h1>
+      <div className='dev-content'>
+        <header className='dev-header'>
+          <h1>EasySetters Dev</h1>
           <ModeToggle />
         </header>
-        <main className='flex-1 overflow-auto p-6'>
+        <main className='dev-main'>
           <Outlet />
         </main>
       </div>

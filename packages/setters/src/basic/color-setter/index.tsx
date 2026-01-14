@@ -1,7 +1,8 @@
-import { Button } from '@/components/ui/button'
-import { Popover, PopoverContent, PopoverTrigger } from '@/components/ui/popover'
+import { cn } from '@/lib/utils'
 import type { SetterProps } from '@easy-editor/core'
 import Sketch from '@uiw/react-color-sketch'
+import { useState, useRef, useEffect } from 'react'
+import styles from './styles.module.css'
 
 export interface ColorSetterProps extends SetterProps<string> {
   disableAlpha?: boolean
@@ -9,27 +10,39 @@ export interface ColorSetterProps extends SetterProps<string> {
 
 const ColorSetter = (props: ColorSetterProps) => {
   const { value, initialValue, onChange, disableAlpha = false } = props
+  const [open, setOpen] = useState(false)
+  const containerRef = useRef<HTMLDivElement>(null)
+
+  useEffect(() => {
+    const handleClickOutside = (event: MouseEvent) => {
+      if (containerRef.current && !containerRef.current.contains(event.target as Node)) {
+        setOpen(false)
+      }
+    }
+
+    if (open) {
+      document.addEventListener('mousedown', handleClickOutside)
+    }
+
+    return () => {
+      document.removeEventListener('mousedown', handleClickOutside)
+    }
+  }, [open])
 
   return (
-    <Popover>
-      <PopoverTrigger asChild>
-        <Button
-          aria-label='Select color'
-          className={'h-8 w-full justify-start gap-2 bg-transparent px-2 py-[5px] text-left font-normal text-xs'}
-          variant={'outline'}
-        >
-          <div
-            aria-label='Current color'
-            className='h-3.5 w-3.5 rounded-full border border-muted-foreground'
-            style={{ backgroundColor: value ?? initialValue }}
-          />
-          <span className='truncate font-mono'>{value ?? initialValue}</span>
-        </Button>
-      </PopoverTrigger>
-      <PopoverContent align='start' className='w-auto p-0'>
+    <div ref={containerRef} style={{ position: 'relative' }}>
+      <button aria-label='Select color' className={styles.trigger} onClick={() => setOpen(!open)} type='button'>
+        <div
+          aria-label='Current color'
+          className={styles.colorPreview}
+          style={{ backgroundColor: value ?? initialValue }}
+        />
+        <span className={styles.colorValue}>{value ?? initialValue}</span>
+      </button>
+      <div className={cn(styles.popover, !open && styles.popoverHidden)}>
         <Sketch color={value} disableAlpha={disableAlpha} onChange={res => onChange(res.hexa)} presetColors={[]} />
-      </PopoverContent>
-    </Popover>
+      </div>
+    </div>
   )
 }
 

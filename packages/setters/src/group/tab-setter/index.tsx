@@ -1,7 +1,8 @@
-import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs'
+import { cn } from '@/lib/utils'
 import type { SetterProps } from '@easy-editor/core'
 import type { PropsWithChildren } from 'react'
-import React from 'react'
+import React, { useState } from 'react'
+import styles from './styles.module.css'
 
 export interface TabSetterProps extends SetterProps<string>, PropsWithChildren {
   tabs?: {
@@ -25,34 +26,47 @@ const TabSetter = (props: TabSetterProps) => {
     }
     throw new Error('TabSetter: children or tabs must be an array')
   }, [tabs, children])
+
   const firstTabValue = React.useMemo(() => tabsList[0]?.value, [tabsList])
+  const [activeTab, setActiveTab] = useState(initialValue ?? firstTabValue)
 
   return (
-    <Tabs className='w-full' defaultValue={initialValue ?? firstTabValue}>
-      <TabsList
-        className='grid w-full'
+    <div className={styles.container}>
+      <div
+        className={styles.tabsList}
+        role='tablist'
         style={{
           gridTemplateColumns: `repeat(${tabsList.length}, minmax(0, 1fr))`,
         }}
       >
         {tabsList.map(tab => (
-          <TabsTrigger key={tab.value} value={tab.value}>
-            {tab.label}
-          </TabsTrigger>
-        ))}
-      </TabsList>
-      {/* INFO：两种 group 的渲染方式，一种是 field.items，一种是 children */}
-      {Array.isArray(children) &&
-        children.map(child => (
-          <TabsContent
-            className='mt-0 box-border space-y-3 p-2'
-            key={child.props.field.config.key}
-            value={child.props.field.config.key}
+          <button
+            aria-selected={activeTab === tab.value}
+            className={cn(styles.tabTrigger, activeTab === tab.value ? styles.tabTriggerActive : '')}
+            key={tab.value}
+            onClick={() => setActiveTab(tab.value)}
+            role='tab'
+            type='button'
           >
-            {child}
-          </TabsContent>
+            {tab.label}
+          </button>
         ))}
-    </Tabs>
+      </div>
+      {Array.isArray(children)
+        ? children.map(child => (
+            <div
+              className={cn(
+                styles.tabContent,
+                activeTab === child.props.field.config.key ? styles.tabContentActive : '',
+              )}
+              key={child.props.field.config.key}
+              role='tabpanel'
+            >
+              {child}
+            </div>
+          ))
+        : null}
+    </div>
   )
 }
 

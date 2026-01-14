@@ -1,0 +1,46 @@
+.container {
+  position: relative;
+  width: 100%;
+}
+
+.input {
+  width: 100%;
+  height: 2rem;
+  padding: var(--es-spacing-1) var(--es-spacing-2);
+  font-size: var(--es-text-xs);
+  background-color: var(--es-background);
+  border: 1px solid var(--es-input);
+  border-radius: var(--es-radius-sm);
+  color: var(--es-foreground);
+  outline: none;
+  transition: border-color var(--es-transition);
+  -moz-appearance: textfield;
+}
+
+.input::-webkit-inner-spin-button,
+.input::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+.input:focus {
+  border-color: var(--es-ring);
+}
+
+.input::placeholder {
+  color: var(--es-muted-foreground);
+}
+
+.inputWithSuffix {
+  padding-right: 2rem;
+}
+
+.suffix {
+  position: absolute;
+  top: 50%;
+  right: var(--es-spacing-3);
+  transform: translateY(-50%);
+  font-size: var(--es-text-xs);
+  color: var(--es-muted-foreground);
+  pointer-events: none;
+}

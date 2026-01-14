@@ -21,8 +21,8 @@
   "scripts": {
     "prepare": "husky",
     "preinstall": "npx only-allow pnpm",
-    "check": "pnpm dlx ultracite check",
-    "fix": "pnpm dlx ultracite fix",
+    "check": "ultracite check",
+    "fix": "ultracite fix",
     "pub:changeset": "pnpm changeset",
     "pub:version": "pnpm changeset version",
     "pub:release": "pnpm changeset publish"

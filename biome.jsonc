@@ -29,10 +29,14 @@
         "useFilenamingConvention": "info"
       },
       "a11y": {
-        "useAriaPropsSupportedByRole": "off"
+        "useAriaPropsSupportedByRole": "off",
+        "noStaticElementInteractions": "info"
       },
       "suspicious": {
         "noUnknownAtRules": "off"
+      },
+      "complexity": {
+        "noExcessiveCognitiveComplexity": "info"
       }
     }
   },

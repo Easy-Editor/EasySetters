@@ -15,10 +15,10 @@ export function SetterPage() {
   const { name, description, Component } = demo
 
   return (
-    <div className='max-w-2xl'>
-      <div className='mb-6'>
-        <h2 className='font-semibold text-xl'>{name}</h2>
-        {description ? <p className='mt-1 text-muted-foreground'>{description}</p> : null}
+    <div className='dev-page'>
+      <div>
+        <h2>{name}</h2>
+        {description ? <p className='dev-page-desc'>{description}</p> : null}
       </div>
       <Component />
     </div>
