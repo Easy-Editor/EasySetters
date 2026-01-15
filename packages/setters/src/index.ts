@@ -15,7 +15,6 @@ export { default as ArraySetter } from './basic/array-setter'
 export { default as ColorSetter } from './basic/color-setter'
 export { default as DataBindingSetter } from './basic/data-binding-setter'
 export { default as DataMappingSetter } from './basic/data-mapping-setter'
-export { default as IconSetter } from './basic/icon-setter'
 export { default as JsonSetter } from './basic/json-setter'
 export { default as NodeIdSetter } from './basic/node-id-setter'
 export { default as NumberSetter } from './basic/number-setter'
@@ -44,7 +43,6 @@ export type {
   DataMappingValue,
   TargetFieldConfig,
 } from './basic/data-mapping-setter'
-export type { IconSetterProps, IconValue } from './basic/icon-setter'
 export type { JsonSetterProps } from './basic/json-setter'
 export type { NodeIdSetterProps } from './basic/node-id-setter'
 export type { NumberSetterProps } from './basic/number-setter'
@@ -68,7 +66,6 @@ import ArraySetter from './basic/array-setter'
 import ColorSetter from './basic/color-setter'
 import DataBindingSetter from './basic/data-binding-setter'
 import DataMappingSetter from './basic/data-mapping-setter'
-import IconSetter from './basic/icon-setter'
 import JsonSetter from './basic/json-setter'
 import NodeIdSetter from './basic/node-id-setter'
 import NumberSetter from './basic/number-setter'
@@ -98,7 +95,6 @@ export const setterMap = {
   TabSetter,
   SpacingSetter,
   AlignSetter,
-  IconSetter,
   DataBindingSetter,
   DataMappingSetter,
   SelectSetter,

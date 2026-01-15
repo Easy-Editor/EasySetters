@@ -1,5 +1,11 @@
 # @easy-editor/setters
 
+## 0.1.2
+
+### Patch Changes
+
+- fix: remove IconSetter
+
 ## 0.1.1
 
 ### Patch Changes
