@@ -6,6 +6,9 @@
 // Import styles
 import './styles/variables.css'
 
+// Shared components
+export { default as Popover } from './lib/popover'
+
 // Setters
 export { default as AlignSetter } from './basic/align-setter'
 export { default as ArraySetter } from './basic/array-setter'

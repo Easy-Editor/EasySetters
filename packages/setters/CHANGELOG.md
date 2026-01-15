@@ -1,5 +1,11 @@
 # @easy-editor/setters
 
+## 0.1.1
+
+### Patch Changes
+
+- fix: setter style error
+
 ## 0.1.0
 
 ### Minor Changes

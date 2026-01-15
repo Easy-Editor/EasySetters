@@ -1,5 +1,6 @@
 import { cn } from '@/lib/utils'
 import type { SetterProps } from '@easy-editor/core'
+import Popover from '@/lib/popover'
 import {
   Activity,
   AlertCircle,
@@ -104,7 +105,7 @@ import {
   ZoomOut,
 } from 'lucide-react'
 import type { LucideIcon } from 'lucide-react'
-import { useCallback, useMemo, useState, useRef, useEffect } from 'react'
+import { useCallback, useMemo, useState } from 'react'
 import styles from './styles.module.css'
 
 export interface IconValue {
@@ -234,23 +235,6 @@ const IconSetter = (props: IconSetterProps) => {
   const [open, setOpen] = useState(false)
   const [searchQuery, setSearchQuery] = useState('')
   const [recentIcons, setRecentIcons] = useState<string[]>([])
-  const containerRef = useRef<HTMLDivElement>(null)
-
-  useEffect(() => {
-    const handleClickOutside = (event: MouseEvent) => {
-      if (containerRef.current && !containerRef.current.contains(event.target as Node)) {
-        setOpen(false)
-      }
-    }
-
-    if (open) {
-      document.addEventListener('mousedown', handleClickOutside)
-    }
-
-    return () => {
-      document.removeEventListener('mousedown', handleClickOutside)
-    }
-  }, [open])
 
   // 获取图标组件
   const getIconComponent = useCallback((iconName: string): LucideIcon => iconMap[iconName] || Circle, [])
@@ -280,13 +264,17 @@ const IconSetter = (props: IconSetterProps) => {
   const CurrentIcon = getIconComponent(currentValue.name)
 
   return (
-    <div className={styles.container} ref={containerRef}>
-      <button aria-label='Select icon' className={styles.trigger} onClick={() => setOpen(!open)} type='button'>
-        <CurrentIcon className={styles.triggerIcon} />
-        <span className={styles.triggerText}>{currentValue.name}</span>
-      </button>
-
-      <div className={cn(styles.popover, open === false ? styles.popoverHidden : '')}>
+    <Popover
+      onClose={() => setOpen(false)}
+      open={open}
+      trigger={
+        <button aria-label='Select icon' className={styles.trigger} onClick={() => setOpen(true)} type='button'>
+          <CurrentIcon className={styles.triggerIcon} />
+          <span className={styles.triggerText}>{currentValue.name}</span>
+        </button>
+      }
+    >
+      <div className={styles.popover}>
         {/* 搜索框 */}
         <div className={styles.searchWrapper}>
           <Search className={styles.searchIcon} />
@@ -345,7 +333,7 @@ const IconSetter = (props: IconSetterProps) => {
         {/* 无结果提示 */}
         {filteredIcons.length === 0 ? <div className={styles.emptyMessage}>未找到匹配的图标</div> : null}
       </div>
-    </div>
+    </Popover>
   )
 }
 

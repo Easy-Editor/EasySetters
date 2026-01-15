@@ -1,5 +1,4 @@
 .container {
-  position: relative;
   width: 100%;
 }
 
@@ -12,7 +11,7 @@
   padding: var(--es-spacing-1) var(--es-spacing-2);
   font-size: var(--es-text-xs);
   text-align: left;
-  background-color: transparent;
+  background-color: var(--es-background);
   border: 1px solid var(--es-input);
   border-radius: var(--es-radius-sm);
   color: var(--es-foreground);
@@ -38,10 +37,6 @@
 }
 
 .popover {
-  position: absolute;
-  top: calc(100% + 4px);
-  left: 0;
-  z-index: 50;
   width: 20rem;
   padding: var(--es-spacing-3);
   background-color: var(--es-popover);
@@ -50,8 +45,9 @@
   box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
 }
 
-.popoverHidden {
-  display: none;
+.popoverContent {
+  background-color: var(--es-popover);
+  border-radius: var(--es-radius);
 }
 
 .content {

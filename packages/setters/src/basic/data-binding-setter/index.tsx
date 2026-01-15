@@ -1,7 +1,8 @@
 import { cn } from '@/lib/utils'
 import type { SetterProps } from '@easy-editor/core'
+import Popover from '@/lib/popover'
 import { Database, FileJson, Link2 } from 'lucide-react'
-import { useCallback, useMemo, useState, useRef, useEffect } from 'react'
+import { useCallback, useMemo, useState } from 'react'
 import styles from './styles.module.css'
 
 export interface DataBindingValue {
@@ -29,23 +30,6 @@ const DataBindingSetter = (props: DataBindingSetterProps) => {
   const currentValue = value ?? initialValue ?? defaultValue
   const [open, setOpen] = useState(false)
   const [activeTab, setActiveTab] = useState<'static' | 'datasource'>(currentValue.type)
-  const containerRef = useRef<HTMLDivElement>(null)
-
-  useEffect(() => {
-    const handleClickOutside = (event: MouseEvent) => {
-      if (containerRef.current && !containerRef.current.contains(event.target as Node)) {
-        setOpen(false)
-      }
-    }
-
-    if (open) {
-      document.addEventListener('mousedown', handleClickOutside)
-    }
-
-    return () => {
-      document.removeEventListener('mousedown', handleClickOutside)
-    }
-  }, [open])
 
   const updateBinding = useCallback(
     (updates: Partial<DataBindingValue>) => {
@@ -165,13 +149,18 @@ const DataBindingSetter = (props: DataBindingSetterProps) => {
   }, [currentValue, dataSources])
 
   return (
-    <div className={styles.container} ref={containerRef}>
-      <button aria-label='Data binding' className={styles.trigger} onClick={() => setOpen(!open)} type='button'>
-        {bindingStatus.icon}
-        <span className={styles.triggerText}>{bindingStatus.text}</span>
-      </button>
-
-      <div className={cn(styles.popover, open === false ? styles.popoverHidden : '')}>
+    <Popover
+      onClose={() => setOpen(false)}
+      open={open}
+      trigger={
+        <button aria-label='Data binding' className={styles.trigger} onClick={() => setOpen(true)} type='button'>
+          {bindingStatus.icon}
+          <span className={styles.triggerText}>{bindingStatus.text}</span>
+        </button>
+      }
+      width={300}
+    >
+      <div className={styles.popoverContent}>
         {/* Tabs */}
         <div className={styles.tabsList} role='tablist'>
           <button
@@ -258,7 +247,7 @@ const DataBindingSetter = (props: DataBindingSetterProps) => {
           </div>
         </div>
       </div>
-    </div>
+    </Popover>
   )
 }
 

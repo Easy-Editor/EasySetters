@@ -5,7 +5,7 @@
   width: 100%;
   height: 2rem;
   padding: var(--es-spacing-1) var(--es-spacing-2);
-  background-color: transparent;
+  background-color: var(--es-background);
   border: 1px solid var(--es-input);
   border-radius: var(--es-radius-sm);
   font-size: var(--es-text-xs);
@@ -35,17 +35,10 @@
 }
 
 .popover {
-  position: absolute;
-  z-index: 50;
-  margin-top: var(--es-spacing-1);
   background-color: var(--es-popover);
   border: 1px solid var(--es-border);
   border-radius: var(--es-radius);
   box-shadow:
     0 4px 6px -1px rgba(0, 0, 0, 0.1),
     0 2px 4px -2px rgba(0, 0, 0, 0.1);
-}
-
-.popoverHidden {
-  display: none;
 }
