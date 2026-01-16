@@ -33,7 +33,8 @@
         "noStaticElementInteractions": "info"
       },
       "suspicious": {
-        "noUnknownAtRules": "off"
+        "noUnknownAtRules": "off",
+        "noArrayIndexKey": "info"
       },
       "complexity": {
         "noExcessiveCognitiveComplexity": "info"

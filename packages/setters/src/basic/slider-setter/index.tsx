@@ -27,7 +27,10 @@ const SliderSetter = (props: SliderSetterProps) => {
       const percent = Math.max(0, Math.min(1, (clientX - rect.left) / rect.width))
       const rawValue = min + percent * (max - min)
       const steppedValue = Math.round(rawValue / step) * step
-      const clampedValue = Math.max(min, Math.min(max, steppedValue))
+      // Fix floating point precision by rounding to step's decimal places
+      const decimals = step % 1 === 0 ? 0 : String(step).split('.')[1]?.length || 0
+      const preciseValue = Number(steppedValue.toFixed(decimals))
+      const clampedValue = Math.max(min, Math.min(max, preciseValue))
       onChange(clampedValue)
     },
     [min, max, step, onChange],
