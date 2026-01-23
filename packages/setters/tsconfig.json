@@ -1,13 +1,24 @@
 {
   "compilerOptions": {
+    "emitDeclarationOnly": true,
+    "declaration": true,
+    "target": "ESNext",
+    "newLine": "LF",
+    "module": "ESNext",
+    "moduleResolution": "Bundler",
+    "strict": true,
+    "strictNullChecks": true,
     "jsx": "react-jsx",
     "esModuleInterop": true,
     "allowSyntheticDefaultImports": true,
+    "strictPropertyInitialization": false,
+    "outDir": "./dist",
+    "skipLibCheck": true,
     "baseUrl": ".",
     "paths": {
       "@/*": ["./src/*"]
     }
   },
-  "extends": "./tsconfig.build.json",
-  "include": ["./src", "./dev", "./test"]
+  "exclude": ["node_modules", "dist"],
+  "include": ["./src", "./dev"]
 }
