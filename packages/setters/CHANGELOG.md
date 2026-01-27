@@ -1,5 +1,11 @@
 # @easy-editor/setters
 
+## 0.1.5
+
+### Patch Changes
+
+- fix: collapse-stter color error
+
 ## 0.1.4
 
 ### Patch Changes

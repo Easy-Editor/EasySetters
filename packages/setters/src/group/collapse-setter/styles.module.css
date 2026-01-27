@@ -9,14 +9,14 @@
   align-items: center;
   justify-content: space-between;
   padding: 0 16px;
-  background-color: var(--es-muted);
+  background-color: var(--es-secondary);
   cursor: pointer;
   user-select: none;
   transition: background-color 0.15s ease;
 }
 
 .header:hover {
-  background-color: var(--es-accent);
+  background-color: var(--es-secondary-hover);
 }
 
 .titleWrapper {
