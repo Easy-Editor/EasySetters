@@ -5,16 +5,42 @@
 
 .header {
   display: flex;
-  height: 2rem;
+  height: 32px;
   align-items: center;
   justify-content: space-between;
-  padding: 0 1rem;
+  padding: 0 16px;
   background-color: var(--es-muted);
+  cursor: pointer;
+  user-select: none;
+  transition: background-color 0.15s ease;
+}
+
+.header:hover {
+  background-color: var(--es-accent);
+}
+
+.titleWrapper {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.chevron {
+  width: 14px;
+  height: 14px;
+  color: var(--es-muted-foreground);
+  transition: transform 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+  flex-shrink: 0;
+}
+
+.chevronOpen {
+  transform: rotate(90deg);
 }
 
 .title {
-  font-size: var(--es-text-sm);
+  font-size: 12px;
   font-weight: 500;
+  letter-spacing: 0.01em;
   color: var(--es-foreground);
 }
 
@@ -22,33 +48,47 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: var(--es-spacing-1);
+  width: 20px;
+  height: 20px;
   background: transparent;
   border: none;
-  border-radius: var(--es-radius-sm);
+  border-radius: 4px;
   color: var(--es-muted-foreground);
   cursor: pointer;
-  transition: background-color var(--es-transition);
+  transition: background-color 0.15s ease, color 0.15s ease;
 }
 
 .toggleButton:hover {
-  background-color: var(--es-accent);
+  background-color: var(--es-border);
+  color: var(--es-foreground);
 }
 
 .toggleIcon {
-  width: 1rem;
-  height: 1rem;
+  width: 14px;
+  height: 14px;
 }
 
 .content {
+  display: grid;
+  grid-template-rows: 1fr;
+  transition: grid-template-rows 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.contentInner {
   display: flex;
   flex-direction: column;
   gap: var(--es-spacing-3);
-  padding: var(--es-spacing-2) 1rem;
+  padding: 12px 16px;
+  overflow: hidden;
 }
 
 .contentHidden {
-  display: none;
+  grid-template-rows: 0fr;
+}
+
+.contentHidden .contentInner {
+  padding-top: 0;
+  padding-bottom: 0;
 }
 
 .srOnly {

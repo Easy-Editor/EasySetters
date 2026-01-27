@@ -1,5 +1,11 @@
 # @easy-editor/setters
 
+## 0.1.4
+
+### Patch Changes
+
+- feat: add sub-tab-setter
+
 ## 0.1.3
 
 ### Patch Changes

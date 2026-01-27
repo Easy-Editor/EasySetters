@@ -3,6 +3,7 @@
 }
 
 .tabsList {
+  position: relative;
   display: grid;
   width: 100%;
   padding: var(--es-spacing-1);
@@ -10,7 +11,21 @@
   border-radius: var(--es-radius);
 }
 
+.indicator {
+  position: absolute;
+  top: var(--es-spacing-1);
+  left: 0;
+  height: calc(100% - var(--es-spacing-1) * 2);
+  background-color: var(--es-background);
+  border-radius: var(--es-radius-sm);
+  box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1);
+  transition: transform 0.2s cubic-bezier(0.4, 0, 0.2, 1), width 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+  will-change: transform, width;
+  z-index: 0;
+}
+
 .tabTrigger {
+  position: relative;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -22,7 +37,8 @@
   border: none;
   border-radius: var(--es-radius-sm);
   cursor: pointer;
-  transition: all var(--es-transition);
+  transition: color 0.15s ease;
+  z-index: 1;
 }
 
 .tabTrigger:hover {
@@ -30,9 +46,7 @@
 }
 
 .tabTriggerActive {
-  background-color: var(--es-background);
   color: var(--es-foreground);
-  box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1);
 }
 
 .tabContent {

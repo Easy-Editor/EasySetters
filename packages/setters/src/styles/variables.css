@@ -1,61 +1,115 @@
 /* EasySetters 主题变量 - 使用 --es- 命名空间 */
 :root {
-  /* 颜色 */
+  /* 基础颜色 */
   --es-background: #ffffff;
-  --es-foreground: #09090b;
+  --es-foreground: #18181b;
+  --es-foreground-secondary: #52525b;
+
+  /* 主色调 - 黑白 */
   --es-primary: #18181b;
-  --es-primary-foreground: #fafafa;
+  --es-primary-hover: #09090b;
+  --es-primary-foreground: #ffffff;
+  --es-primary-muted: rgba(24, 24, 27, 0.08);
+
+  /* 次要色 */
   --es-secondary: #f4f4f5;
+  --es-secondary-hover: #e4e4e7;
   --es-secondary-foreground: #18181b;
-  --es-muted: #f4f4f5;
+
+  /* 静音色 */
+  --es-muted: #fafafa;
   --es-muted-foreground: #71717a;
+
+  /* 强调色 */
   --es-accent: #f4f4f5;
+  --es-accent-hover: #e4e4e7;
   --es-accent-foreground: #18181b;
-  --es-destructive: #ef4444;
-  --es-destructive-foreground: #fafafa;
+
+  /* 功能色 */
+  --es-destructive: #dc2626;
+  --es-destructive-foreground: #ffffff;
+  --es-success: #16a34a;
+  --es-warning: #d97706;
+
+  /* 边框与输入 */
   --es-border: #e4e4e7;
+  --es-border-hover: #d4d4d8;
   --es-input: #e4e4e7;
   --es-ring: #18181b;
+
+  /* 弹出层 */
   --es-popover: #ffffff;
-  --es-popover-foreground: #09090b;
+  --es-popover-foreground: #18181b;
 
   /* 圆角 */
-  --es-radius: 0.5rem;
-  --es-radius-sm: 0.25rem;
-  --es-radius-lg: 0.75rem;
+  --es-radius: 6px;
+  --es-radius-sm: 4px;
+  --es-radius-lg: 8px;
 
   /* 间距 */
-  --es-spacing-1: 0.25rem;
-  --es-spacing-2: 0.5rem;
-  --es-spacing-3: 0.75rem;
-  --es-spacing-4: 1rem;
+  --es-spacing-1: 4px;
+  --es-spacing-2: 8px;
+  --es-spacing-3: 12px;
+  --es-spacing-4: 16px;
 
   /* 字体大小 */
-  --es-text-xs: 0.75rem;
-  --es-text-sm: 0.875rem;
-  --es-text-base: 1rem;
+  --es-text-xs: 11px;
+  --es-text-sm: 12px;
+  --es-text-base: 13px;
 
   /* 过渡 */
   --es-transition: 150ms cubic-bezier(0.4, 0, 0.2, 1);
+  --es-transition-fast: 100ms cubic-bezier(0.4, 0, 0.2, 1);
+
+  /* 阴影 */
+  --es-shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.05);
+  --es-shadow: 0 1px 3px rgba(0, 0, 0, 0.1), 0 1px 2px rgba(0, 0, 0, 0.06);
 }
 
 /* 暗色主题 */
 .dark {
+  /* 基础颜色 */
   --es-background: #09090b;
   --es-foreground: #fafafa;
+  --es-foreground-secondary: #a1a1aa;
+
+  /* 主色调 - 黑白 */
   --es-primary: #fafafa;
+  --es-primary-hover: #ffffff;
   --es-primary-foreground: #18181b;
+  --es-primary-muted: rgba(250, 250, 250, 0.1);
+
+  /* 次要色 */
   --es-secondary: #27272a;
+  --es-secondary-hover: #3f3f46;
   --es-secondary-foreground: #fafafa;
-  --es-muted: #27272a;
+
+  /* 静音色 */
+  --es-muted: #18181b;
   --es-muted-foreground: #a1a1aa;
+
+  /* 强调色 */
   --es-accent: #27272a;
+  --es-accent-hover: #3f3f46;
   --es-accent-foreground: #fafafa;
-  --es-destructive: #7f1d1d;
-  --es-destructive-foreground: #fafafa;
+
+  /* 功能色 */
+  --es-destructive: #ef4444;
+  --es-destructive-foreground: #ffffff;
+  --es-success: #22c55e;
+  --es-warning: #f59e0b;
+
+  /* 边框与输入 */
   --es-border: #27272a;
+  --es-border-hover: #3f3f46;
   --es-input: #27272a;
-  --es-ring: #d4d4d8;
-  --es-popover: #09090b;
+  --es-ring: #fafafa;
+
+  /* 弹出层 */
+  --es-popover: #18181b;
   --es-popover-foreground: #fafafa;
+
+  /* 阴影 */
+  --es-shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.3);
+  --es-shadow: 0 1px 3px rgba(0, 0, 0, 0.4), 0 1px 2px rgba(0, 0, 0, 0.3);
 }
