@@ -9,6 +9,7 @@
   border-radius: 9999px;
   cursor: pointer;
   transition: background-color var(--es-transition);
+  margin: 4px;
 }
 
 .switch:focus-visible {

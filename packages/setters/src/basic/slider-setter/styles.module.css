@@ -1,5 +1,6 @@
 .container {
   display: flex;
+  padding: 6px 8px;
   width: 100%;
   align-items: center;
   gap: var(--es-spacing-3);
@@ -53,7 +54,7 @@
 }
 
 .value {
-  min-width: 40px;
+  min-width: 28px;
   text-align: right;
   font-size: var(--es-text-xs);
   color: var(--es-muted-foreground);

@@ -7,7 +7,7 @@
   display: grid;
   width: 100%;
   padding: var(--es-spacing-1);
-  background-color: var(--es-muted);
+  background-color: var(--es-secondary);
   border-radius: var(--es-radius);
 }
 

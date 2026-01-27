@@ -1,5 +1,11 @@
 # @easy-editor/setters
 
+## 0.1.7
+
+### Patch Changes
+
+- style: setters
+
 ## 0.1.6
 
 ### Patch Changes

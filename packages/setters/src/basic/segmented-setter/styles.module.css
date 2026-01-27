@@ -1,8 +1,8 @@
 .container {
   position: relative;
   display: inline-flex;
-  padding: 3px;
-  background-color: var(--es-muted);
+  padding: 4px;
+  background-color: var(--es-secondary);
   border-radius: var(--es-radius);
 }
 
@@ -18,7 +18,9 @@
   background-color: var(--es-background);
   border-radius: calc(var(--es-radius) - 2px);
   box-shadow: var(--es-shadow-sm);
-  transition: transform 0.2s cubic-bezier(0.4, 0, 0.2, 1), width 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+  transition:
+    transform 0.2s cubic-bezier(0.4, 0, 0.2, 1),
+    width 0.2s cubic-bezier(0.4, 0, 0.2, 1);
   will-change: transform, width;
   z-index: 0;
 }
