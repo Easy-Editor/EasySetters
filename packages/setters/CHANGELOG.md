@@ -1,5 +1,11 @@
 # @easy-editor/setters
 
+## 0.1.8
+
+### Patch Changes
+
+- Redesign setter surfaces and strengthen array, number, upload, value, and package-consumer contracts.
+
 ## 0.1.7
 
 ### Patch Changes

@@ -27,7 +27,10 @@ export function SubTabSetterDemo() {
         value={undefined}
       >
         {/* 内容 Tab */}
-        <div key='content-tab' {...({ field: { config: { key: 'content', title: '内容' } } } as Record<string, unknown>)}>
+        <div
+          key='content-tab'
+          {...({ field: { config: { key: 'content', title: '内容' } } } as Record<string, unknown>)}
+        >
           <div className='space-y-3'>
             <div>
               <span className='mb-1 block text-muted-foreground text-xs'>文本内容</span>
@@ -40,7 +43,10 @@ export function SubTabSetterDemo() {
           <div className='space-y-3'>
             <div>
               <span className='mb-1 block text-muted-foreground text-xs'>字体大小</span>
-              <NumberSetter {...createSetterProps(fontSizeValue, setFontSizeValue, { id: 'fontSize', title: '字体大小' })} suffix='px' />
+              <NumberSetter
+                {...createSetterProps(fontSizeValue, setFontSizeValue, { id: 'fontSize', title: '字体大小' })}
+                suffix='px'
+              />
             </div>
             <div>
               <span className='mb-1 block text-muted-foreground text-xs'>颜色</span>

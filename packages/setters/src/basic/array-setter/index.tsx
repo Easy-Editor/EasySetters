@@ -1,10 +1,20 @@
 import type { SetterProps } from '@easy-editor/core'
 import { GripVertical, Plus, Trash2 } from 'lucide-react'
+import type { InputHTMLAttributes } from 'react'
 import { useCallback } from 'react'
+import {
+  type ArrayItemSetter,
+  canAddArrayItem,
+  canRemoveArrayItem,
+  createArrayItemValue,
+  normalizeArrayItemSetter,
+  parseArrayNumberInput,
+} from './model'
 import styles from './styles.module.css'
 
 export interface ArraySetterProps extends SetterProps<unknown[]> {
-  itemSetter?: 'string' | 'number'
+  itemProps?: Omit<InputHTMLAttributes<HTMLInputElement>, 'onChange' | 'type' | 'value'>
+  itemSetter?: ArrayItemSetter
   maxItems?: number
   minItems?: number
   placeholder?: string
@@ -24,18 +34,19 @@ const ArraySetter = (props: ArraySetterProps) => {
   } = props
 
   const items = value ?? initialValue ?? []
+  const itemKind = normalizeArrayItemSetter(itemSetter)
+  const itemInputType = { color: 'color', number: 'number', string: 'text' }[itemKind]
 
   const handleAdd = useCallback(() => {
-    if (maxItems && items.length >= maxItems) {
+    if (!canAddArrayItem(items.length, maxItems)) {
       return
     }
-    const newItem = itemSetter === 'number' ? 0 : ''
-    onChange([...items, newItem])
+    onChange([...items, createArrayItemValue(itemSetter)])
   }, [items, maxItems, itemSetter, onChange])
 
   const handleRemove = useCallback(
     (index: number) => {
-      if (items.length <= minItems) {
+      if (!canRemoveArrayItem(items.length, minItems)) {
         return
       }
       const newItems = items.filter((_, i) => i !== index)
@@ -53,23 +64,33 @@ const ArraySetter = (props: ArraySetterProps) => {
     [items, onChange],
   )
 
-  const canAdd = !maxItems || items.length < maxItems
-  const canRemove = items.length > minItems
+  const canAdd = canAddArrayItem(items.length, maxItems)
+  const canRemove = canRemoveArrayItem(items.length, minItems)
 
   return (
     <div className={styles.container}>
       {items.map((item, index) => (
+        // biome-ignore lint/suspicious/noArrayIndexKey: primitive values can repeat and do not provide stable identity
         <div className={styles.item} key={index}>
           <GripVertical className={styles.dragHandle} />
           <input
+            {...props.itemProps}
             className={styles.input}
             onChange={e => {
-              const val = itemSetter === 'number' ? +e.target.value : e.target.value
-              handleChange(index, val)
+              if (itemKind !== 'number') {
+                handleChange(index, e.target.value)
+                return
+              }
+
+              const result = parseArrayNumberInput(e.target.value)
+              if (result.kind === 'invalid') {
+                return
+              }
+              handleChange(index, result.value)
             }}
-            placeholder={placeholder}
-            type={itemSetter === 'number' ? 'number' : 'text'}
-            value={item as string | number}
+            placeholder={props.itemProps?.placeholder ?? placeholder}
+            type={itemInputType}
+            value={(item as string | number | undefined) ?? ''}
           />
           <button
             className={styles.removeButton}

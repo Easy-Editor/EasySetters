@@ -1,63 +1,67 @@
 .container {
   width: 100%;
 }
-
 .tabsList {
   position: relative;
   display: grid;
   width: 100%;
-  padding: var(--es-spacing-1);
-  background-color: var(--es-secondary);
+  min-height: var(--es-control-height);
+  padding: 2px;
+  background: var(--es-surface-subtle);
+  border: 1px solid var(--es-control-border);
   border-radius: var(--es-radius);
 }
-
 .indicator {
   position: absolute;
-  top: var(--es-spacing-1);
+  top: 2px;
   left: 0;
-  height: calc(100% - var(--es-spacing-1) * 2);
-  background-color: var(--es-background);
-  border-radius: var(--es-radius-sm);
-  box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1);
-  transition: transform 0.2s cubic-bezier(0.4, 0, 0.2, 1), width 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+  height: calc(100% - 4px);
+  background: var(--es-control-bg);
+  border: 1px solid var(--es-control-border);
+  border-radius: 3px;
+  transition:
+    transform var(--es-motion-standard),
+    width var(--es-motion-standard);
   will-change: transform, width;
   z-index: 0;
 }
-
 .tabTrigger {
   position: relative;
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: var(--es-spacing-1) var(--es-spacing-3);
+  min-width: 0;
+  padding: 0 var(--es-spacing-2);
+  overflow: hidden;
+  font: inherit;
   font-size: var(--es-text-sm);
   font-weight: 500;
-  color: var(--es-muted-foreground);
+  color: var(--es-text-secondary);
+  text-overflow: ellipsis;
+  white-space: nowrap;
   background: transparent;
-  border: none;
-  border-radius: var(--es-radius-sm);
+  border: 0;
+  border-radius: 3px;
   cursor: pointer;
-  transition: color 0.15s ease;
+  outline: none;
+  transition: color var(--es-motion-fast);
   z-index: 1;
 }
-
-.tabTrigger:hover {
-  color: var(--es-foreground);
-}
-
+.tabTrigger:hover,
 .tabTriggerActive {
-  color: var(--es-foreground);
+  color: var(--es-text-primary);
 }
-
+.tabTrigger:focus-visible {
+  outline: var(--es-focus-outline);
+  outline-offset: -1px;
+}
 .tabContent {
   display: none;
   flex-direction: column;
   gap: var(--es-spacing-3);
-  padding: var(--es-spacing-2);
-  margin-top: 0;
+  padding: var(--es-spacing-3) 0 0;
   box-sizing: border-box;
 }
-
 .tabContentActive {
   display: flex;
 }

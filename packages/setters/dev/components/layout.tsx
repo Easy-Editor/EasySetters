@@ -2,8 +2,8 @@
  * 页面布局组件
  */
 import { Outlet } from 'react-router-dom'
-import { Nav } from './nav'
 import { ModeToggle } from '../mode-toggle'
+import { Nav } from './nav'
 
 export function Layout() {
   return (
@@ -11,7 +11,10 @@ export function Layout() {
       <Nav />
       <div className='dev-content'>
         <header className='dev-header'>
-          <h1>EasySetters Dev</h1>
+          <div>
+            <span className='dev-header-kicker'>组件工作台</span>
+            <h1>属性面板设置器</h1>
+          </div>
           <ModeToggle />
         </header>
         <main className='dev-main'>

@@ -1,0 +1,25 @@
+{
+  "compilerOptions": {
+    "baseUrl": "../packages/setters/src",
+    "jsx": "preserve",
+    "lib": ["DOM", "ESNext"],
+    "module": "ESNext",
+    "moduleResolution": "Bundler",
+    "noEmit": true,
+    "paths": {
+      "@/*": ["*"]
+    },
+    "skipLibCheck": true,
+    "strict": true,
+    "target": "ESNext"
+  },
+  "files": [
+    "./styles.d.ts",
+    "../packages/setters/src/basic/array-setter/index.tsx",
+    "../packages/setters/src/basic/number-setter/index.tsx",
+    "../packages/setters/src/basic/segmented-setter/index.tsx",
+    "../packages/setters/src/basic/select-setter/index.tsx",
+    "../packages/setters/src/basic/string-setter/index.tsx",
+    "../packages/setters/src/basic/upload-setter/index.tsx"
+  ]
+}

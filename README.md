@@ -293,6 +293,12 @@ EasySetters/
 
 ## 🎯 设计理念
 
+### 属性面板，而不是组件展厅
+
+EasySetters 只负责把 `configure` 字段稳定地呈现为可操作控件：紧凑的 30–32px 控件高度、清晰的文字层级、可见的键盘焦点，以及克制的明暗主题。设置器不会用发光、渐变或装饰动画制造“智能感”，也不会替物料决定业务语义。
+
+`configure` 是人类属性面板与 Agent 能力清单的共同来源。设置器继续消费 `SetterProps` 的值与回调，不复制字段模型；Agent 根据字段的稳定 `name`、setter、默认值和静态约束执行操作。动态回调、条件函数和自定义视图仍由宿主控制，不能直接暴露给 Agent。
+
 ### 与 EasyMaterials 的区别
 
 | 特性 | EasyMaterials | EasySetters |

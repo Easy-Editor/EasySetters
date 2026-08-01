@@ -1,21 +1,35 @@
 import { cn } from '@/lib/utils'
 import type { SetterProps } from '@easy-editor/core'
+import { parseNumberInput } from './model'
 import styles from './styles.module.css'
 
 export interface NumberSetterProps extends SetterProps<number> {
+  max?: number
+  min?: number
   placeholder?: string
+  step?: number
   suffix?: string
 }
 
 const NumberSetter = (props: NumberSetterProps) => {
-  const { value, initialValue, placeholder, onChange, suffix } = props
+  const { value, initialValue, max, min, placeholder, onChange, removeProp, step, suffix } = props
 
   return (
     <div className={styles.container}>
       <input
         className={cn(styles.input, suffix ? styles.inputWithSuffix : '')}
-        onChange={e => onChange(+e.target.value)}
-        placeholder={placeholder || ''}
+        max={max}
+        min={min}
+        onChange={event => {
+          const result = parseNumberInput(event.target.value)
+          if (result.kind === 'empty') {
+            removeProp()
+            return
+          }
+          onChange(result.value)
+        }}
+        placeholder={placeholder ?? ''}
+        step={step}
         type='number'
         value={value ?? initialValue ?? ''}
       />

@@ -5,4 +5,11 @@
 export default {
   preset: 'setter',
   globalName: 'EasyEditorSetters',
+  output: {
+    esm: true,
+    cjs: true,
+    umd: true,
+    minify: true,
+    types: false,
+  },
 }

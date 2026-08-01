@@ -7,29 +7,31 @@ import type { SetterProps } from '@easy-editor/core'
 import { useCallback, useEffect, useRef, useState } from 'react'
 import styles from './styles.module.css'
 
-export interface SegmentedOption {
+export type SegmentedOptionValue = string | number | boolean
+
+export interface SegmentedOption<T extends SegmentedOptionValue = SegmentedOptionValue> {
   label: string
-  value: string
+  value: T
   disabled?: boolean
 }
 
-export interface SegmentedSetterProps extends SetterProps<string> {
-  options?: SegmentedOption[]
+export interface SegmentedSetterProps<T extends SegmentedOptionValue = SegmentedOptionValue> extends SetterProps<T> {
+  options?: SegmentedOption<T>[]
   size?: 'sm' | 'md'
 }
 
-const SegmentedSetter = (props: SegmentedSetterProps) => {
+const SegmentedSetter = <T extends SegmentedOptionValue>(props: SegmentedSetterProps<T>) => {
   const { value, initialValue, options = [], onChange, size = 'md' } = props
   const containerRef = useRef<HTMLDivElement>(null)
   const [indicatorStyle, setIndicatorStyle] = useState({ left: 0, width: 0 })
 
-  const currentValue = value ?? initialValue ?? options[0]?.value ?? ''
+  const currentValue = value ?? initialValue ?? options[0]?.value
 
-  const updateIndicator = useCallback(() => {
-    if (!containerRef.current) return
-    const selectedButton = containerRef.current.querySelector(
-      `[data-value="${currentValue}"]`,
-    ) as HTMLButtonElement
+  const updateIndicator = useCallback((_selectedValue: T | undefined) => {
+    if (!containerRef.current) {
+      return
+    }
+    const selectedButton = containerRef.current.querySelector('[data-selected="true"]') as HTMLButtonElement
     if (selectedButton) {
       const containerRect = containerRef.current.getBoundingClientRect()
       const buttonRect = selectedButton.getBoundingClientRect()
@@ -38,19 +40,17 @@ const SegmentedSetter = (props: SegmentedSetterProps) => {
         width: buttonRect.width,
       })
     }
-  }, [currentValue])
+  }, [])
 
   useEffect(() => {
-    updateIndicator()
-    window.addEventListener('resize', updateIndicator)
-    return () => window.removeEventListener('resize', updateIndicator)
-  }, [updateIndicator])
+    updateIndicator(currentValue)
+    const handleResize = () => updateIndicator(currentValue)
+    window.addEventListener('resize', handleResize)
+    return () => window.removeEventListener('resize', handleResize)
+  }, [currentValue, updateIndicator])
 
   return (
-    <div
-      className={cn(styles.container, size === 'sm' && styles.containerSm)}
-      ref={containerRef}
-    >
+    <div className={cn(styles.container, size === 'sm' && styles.containerSm)} ref={containerRef}>
       <div
         className={styles.indicator}
         style={{
@@ -65,9 +65,9 @@ const SegmentedSetter = (props: SegmentedSetterProps) => {
             currentValue === option.value && styles.segmentSelected,
             option.disabled === true && styles.segmentDisabled,
           )}
-          data-value={option.value}
+          data-selected={currentValue === option.value}
           disabled={option.disabled}
-          key={option.value}
+          key={`${typeof option.value}:${String(option.value)}`}
           onClick={() => !option.disabled && onChange(option.value)}
           type='button'
         >

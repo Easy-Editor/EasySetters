@@ -33,7 +33,9 @@ const TabSetter = (props: TabSetterProps) => {
   const [activeTab, setActiveTab] = useState(initialValue ?? firstTabValue)
 
   const updateIndicator = useCallback(() => {
-    if (!tabsListRef.current) return
+    if (!tabsListRef.current) {
+      return
+    }
     const selectedButton = tabsListRef.current.querySelector(`[data-value="${activeTab}"]`) as HTMLButtonElement
     if (selectedButton) {
       const containerRect = tabsListRef.current.getBoundingClientRect()

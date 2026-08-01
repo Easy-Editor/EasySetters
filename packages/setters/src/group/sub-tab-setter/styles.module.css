@@ -1,83 +1,68 @@
 .container {
   width: 100%;
 }
-
 .tabsWrapper {
   position: relative;
 }
-
 .tabsList {
   display: flex;
+  min-height: var(--es-control-height);
   padding: 0;
   margin: 0;
-  border-bottom: 1px solid var(--es-border);
+  border-bottom: 1px solid var(--es-control-border);
 }
-
 .tabTrigger {
   position: relative;
-  flex: 1;
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 8px 12px;
+  flex: 1;
   min-width: 0;
-  font-size: 12px;
-  font-weight: 500;
-  letter-spacing: 0.01em;
-  color: var(--es-muted-foreground);
-  background: transparent;
-  border: none;
-  cursor: pointer;
-  transition: color 0.15s ease;
-  user-select: none;
-  white-space: nowrap;
+  padding: 0 var(--es-spacing-2);
   overflow: hidden;
+  font: inherit;
+  font-size: var(--es-text-sm);
+  font-weight: 500;
+  color: var(--es-text-secondary);
   text-overflow: ellipsis;
-}
-
-.tabTrigger:hover {
-  color: var(--es-foreground);
-}
-
-.tabTrigger:focus-visible {
+  white-space: nowrap;
+  background: transparent;
+  border: 0;
+  cursor: pointer;
   outline: none;
-  color: var(--es-foreground);
+  transition:
+    color var(--es-motion-fast),
+    background-color var(--es-motion-fast);
+  user-select: none;
 }
-
+.tabTrigger:hover {
+  color: var(--es-text-primary);
+  background: var(--es-surface-subtle);
+}
+.tabTrigger:focus-visible {
+  outline: var(--es-focus-outline);
+  outline-offset: -2px;
+}
 .tabTriggerActive {
-  color: var(--es-foreground);
+  color: var(--es-text-primary);
 }
-
 .indicator {
   position: absolute;
   bottom: 0;
   left: 0;
   height: 2px;
-  background: var(--es-primary);
-  border-radius: 1px 1px 0 0;
-  transition: transform 0.2s cubic-bezier(0.4, 0, 0.2, 1), width 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+  background: var(--es-action);
+  transition:
+    transform var(--es-motion-standard),
+    width var(--es-motion-standard);
   will-change: transform, width;
 }
-
 .tabContent {
   display: none;
   flex-direction: column;
   gap: var(--es-spacing-2);
-  padding: var(--es-spacing-3) 0;
-  animation: fadeIn 0.15s ease;
+  padding: var(--es-spacing-3) 0 0;
 }
-
 .tabContentActive {
   display: flex;
-}
-
-@keyframes fadeIn {
-  from {
-    opacity: 0;
-    transform: translateY(-2px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
 }
