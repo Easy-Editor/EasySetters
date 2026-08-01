@@ -1,33 +1,43 @@
 .container {
   width: 100%;
 }
-
 .textarea {
+  display: block;
   width: 100%;
-  min-height: 60px;
-  padding: var(--es-spacing-2);
-  font-size: var(--es-text-xs);
-  font-family: inherit;
-  background-color: var(--es-background);
-  border: 1px solid var(--es-input);
+  min-height: 64px;
+  padding: 7px var(--es-spacing-2);
+  font: inherit;
+  font-size: var(--es-text-sm);
+  line-height: 1.5;
+  color: var(--es-text-primary);
+  background: var(--es-control-bg);
+  border: 1px solid var(--es-control-border);
   border-radius: var(--es-radius-sm);
-  color: var(--es-foreground);
   resize: vertical;
   outline: none;
-  transition: border-color var(--es-transition);
+  transition:
+    border-color var(--es-motion-fast),
+    background-color var(--es-motion-fast);
 }
-
-.textarea:focus {
-  border-color: var(--es-ring);
+.textarea:hover:not(:disabled) {
+  border-color: var(--es-control-border-hover);
 }
-
+.textarea:focus-visible {
+  border-color: var(--es-focus-ring);
+  outline: var(--es-focus-outline);
+  outline-offset: -1px;
+}
+.textarea:disabled {
+  color: var(--es-control-disabled-text);
+  background: var(--es-control-disabled-bg);
+  cursor: not-allowed;
+}
 .textarea::placeholder {
-  color: var(--es-muted-foreground);
+  color: var(--es-text-tertiary);
 }
-
 .counter {
   margin-top: var(--es-spacing-1);
   text-align: right;
   font-size: var(--es-text-xs);
-  color: var(--es-muted-foreground);
+  color: var(--es-text-tertiary);
 }

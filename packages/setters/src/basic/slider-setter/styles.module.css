@@ -1,61 +1,57 @@
 .container {
   display: flex;
-  padding: 6px 8px;
-  width: 100%;
   align-items: center;
   gap: var(--es-spacing-3);
+  width: 100%;
+  min-height: var(--es-control-height);
+  padding: 0 2px;
 }
-
 .slider {
-  flex: 1;
-  height: 1.25rem;
+  position: relative;
   display: flex;
   align-items: center;
-  position: relative;
+  flex: 1;
+  height: 20px;
 }
-
 .track {
   position: relative;
   flex: 1;
-  height: 0.375rem;
-  background-color: var(--es-secondary);
-  border-radius: 9999px;
+  height: 3px;
+  background: var(--es-control-border);
+  border-radius: 999px;
   cursor: pointer;
 }
-
 .range {
   position: absolute;
   height: 100%;
-  background-color: var(--es-primary);
-  border-radius: 9999px;
+  background: var(--es-action);
+  border-radius: 999px;
 }
-
 .thumb {
   position: absolute;
   top: 50%;
-  width: 1rem;
-  height: 1rem;
-  background-color: var(--es-background);
-  border: 2px solid var(--es-primary);
-  border-radius: 9999px;
+  width: 14px;
+  height: 14px;
+  background: var(--es-control-bg);
+  border: 2px solid var(--es-action);
+  border-radius: 999px;
   transform: translate(-50%, -50%);
   cursor: pointer;
-  transition: box-shadow var(--es-transition);
+  outline: none;
+  transition: border-color var(--es-motion-fast);
   z-index: 1;
 }
-
 .thumb:hover {
-  box-shadow: 0 0 0 4px rgba(0, 0, 0, 0.1);
+  border-color: var(--es-action-hover);
 }
-
-.thumb:focus {
-  outline: none;
-  box-shadow: 0 0 0 4px rgba(0, 0, 0, 0.1);
+.thumb:focus-visible {
+  outline: var(--es-focus-outline);
+  outline-offset: var(--es-focus-offset);
 }
-
 .value {
-  min-width: 28px;
+  min-width: 36px;
   text-align: right;
+  font-family: ui-monospace, "SFMono-Regular", Consolas, monospace;
   font-size: var(--es-text-xs);
-  color: var(--es-muted-foreground);
+  color: var(--es-text-secondary);
 }

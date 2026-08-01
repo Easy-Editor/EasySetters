@@ -33,7 +33,9 @@ const SubTabSetter = (props: SubTabSetterProps) => {
   const [activeTab, setActiveTab] = useState(initialValue ?? firstTabValue)
 
   const updateIndicator = useCallback(() => {
-    if (!tabsRef.current) return
+    if (!tabsRef.current) {
+      return
+    }
     const activeButton = tabsRef.current.querySelector(`[data-value="${activeTab}"]`) as HTMLButtonElement
     if (activeButton) {
       const containerRect = tabsRef.current.getBoundingClientRect()
@@ -80,10 +82,7 @@ const SubTabSetter = (props: SubTabSetterProps) => {
       {Array.isArray(children)
         ? children.map(child => (
             <div
-              className={cn(
-                styles.tabContent,
-                activeTab === child.props.field.config.key && styles.tabContentActive,
-              )}
+              className={cn(styles.tabContent, activeTab === child.props.field.config.key && styles.tabContentActive)}
               key={child.props.field.config.key}
               role='tabpanel'
             >

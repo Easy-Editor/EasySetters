@@ -16,7 +16,8 @@ export function SetterPage() {
 
   return (
     <div className='dev-page'>
-      <div>
+      <div className='dev-page-heading'>
+        <span className='dev-eyebrow'>设置器参考</span>
         <h2>{name}</h2>
         {description ? <p className='dev-page-desc'>{description}</p> : null}
       </div>

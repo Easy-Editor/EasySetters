@@ -10,7 +10,7 @@ import { ThemeProvider } from './theme-provider'
 
 export default function App() {
   return (
-    <ThemeProvider defaultTheme='dark' storageKey='easy-setters-theme'>
+    <ThemeProvider defaultTheme='system' storageKey='easy-setters-theme'>
       <BrowserRouter>
         <Routes>
           <Route element={<Layout />}>

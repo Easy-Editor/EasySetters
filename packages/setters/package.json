@@ -1,33 +1,28 @@
 {
   "name": "@easy-editor/setters",
-  "version": "0.1.7",
+  "version": "0.1.8",
   "description": "Official setters library for EasyEditor - A collection of property setter components",
   "type": "module",
-  "main": "src/index.ts",
-  "types": "src/index.ts",
+  "main": "dist/index.min.cjs",
+  "module": "dist/index.min.esm.js",
+  "types": "dist/index.d.ts",
+  "unpkg": "dist/index.min.js",
+  "jsdelivr": "dist/index.min.js",
   "exports": {
-    ".": "./src/index.ts"
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.min.esm.js",
+      "require": "./dist/index.min.cjs"
+    },
+    "./styles.css": "./dist/index.css"
   },
   "files": [
     "dist",
-    "LICENSE",
-    "README.md"
+    "README.md",
+    "CHANGELOG.md"
   ],
   "publishConfig": {
     "access": "public",
-    "main": "dist/index.js",
-    "module": "dist/index.esm.js",
-    "unpkg": "dist/index.min.js",
-    "jsdelivr": "dist/index.min.js",
-    "types": "dist/index.d.ts",
-    "exports": {
-      ".": {
-        "types": "./dist/index.d.ts",
-        "import": "./dist/index.esm.js",
-        "require": "./dist/index.cjs"
-      },
-      "./styles.css": "./dist/styles.css"
-    },
     "registry": "https://registry.npmjs.org/"
   },
   "homepage": "https://github.com/Easy-Editor/EasySetters",
@@ -55,7 +50,8 @@
     "lint": "biome check .",
     "build": "npm-run-all -nl build:*",
     "build:clean": "rimraf dist/",
-    "build:js": "easypack build"
+    "build:js": "easypack build",
+    "build:types": "tsc --project tsconfig.build.json && node ../../scripts/normalize-declaration-imports.mjs"
   },
   "peerDependencies": {
     "@easy-editor/core": "*",

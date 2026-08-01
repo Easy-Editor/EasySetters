@@ -5,25 +5,27 @@ import { ChevronDown } from 'lucide-react'
 import { useState } from 'react'
 import styles from './styles.module.css'
 
-export interface SelectOption {
+export type SelectOptionValue = string | number | boolean
+
+export interface SelectOption<T extends SelectOptionValue = SelectOptionValue> {
   label: string
-  value: string
+  value: T
   disabled?: boolean
 }
 
-export interface SelectSetterProps extends SetterProps<string> {
-  options?: SelectOption[]
+export interface SelectSetterProps<T extends SelectOptionValue = SelectOptionValue> extends SetterProps<T> {
+  options?: SelectOption<T>[]
   placeholder?: string
 }
 
-const SelectSetter = (props: SelectSetterProps) => {
+const SelectSetter = <T extends SelectOptionValue>(props: SelectSetterProps<T>) => {
   const { value, initialValue, options = [], placeholder, onChange } = props
   const [open, setOpen] = useState(false)
 
-  const currentValue = value ?? initialValue ?? ''
+  const currentValue = value ?? initialValue
   const selectedOption = options.find(opt => opt.value === currentValue)
 
-  const handleSelect = (optionValue: string, disabled?: boolean) => {
+  const handleSelect = (optionValue: T, disabled?: boolean) => {
     if (disabled) {
       return
     }
@@ -59,7 +61,7 @@ const SelectSetter = (props: SelectSetterProps) => {
               option.value === currentValue ? styles.optionSelected : '',
               option.disabled === true ? styles.optionDisabled : '',
             )}
-            key={option.value}
+            key={`${typeof option.value}:${String(option.value)}`}
             onClick={() => handleSelect(option.value, option.disabled)}
             role='option'
             type='button'

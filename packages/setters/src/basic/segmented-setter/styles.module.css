@@ -1,65 +1,61 @@
 .container {
   position: relative;
   display: inline-flex;
-  padding: 4px;
-  background-color: var(--es-secondary);
+  min-height: var(--es-control-height);
+  padding: 2px;
+  background: var(--es-surface-subtle);
+  border: 1px solid var(--es-control-border);
   border-radius: var(--es-radius);
 }
-
 .containerSm {
-  padding: 2px;
+  min-height: var(--es-control-height-sm);
 }
-
 .indicator {
   position: absolute;
-  top: 3px;
+  top: 2px;
   left: 0;
-  height: calc(100% - 6px);
-  background-color: var(--es-background);
-  border-radius: calc(var(--es-radius) - 2px);
-  box-shadow: var(--es-shadow-sm);
+  height: calc(100% - 4px);
+  background: var(--es-control-bg);
+  border: 1px solid var(--es-control-border);
+  border-radius: 3px;
   transition:
-    transform 0.2s cubic-bezier(0.4, 0, 0.2, 1),
-    width 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+    transform var(--es-motion-standard),
+    width var(--es-motion-standard);
   will-change: transform, width;
   z-index: 0;
 }
-
-.containerSm .indicator {
-  top: 2px;
-  height: calc(100% - 4px);
-}
-
 .segment {
   position: relative;
   flex: 1;
-  padding: 4px 12px;
+  min-width: 44px;
+  padding: 0 var(--es-spacing-3);
+  font: inherit;
   font-size: var(--es-text-sm);
   font-weight: 500;
-  color: var(--es-muted-foreground);
-  background: transparent;
-  border: none;
-  border-radius: calc(var(--es-radius) - 2px);
-  cursor: pointer;
-  transition: color 0.15s ease;
+  color: var(--es-text-secondary);
   white-space: nowrap;
+  background: transparent;
+  border: 0;
+  border-radius: 3px;
+  cursor: pointer;
+  outline: none;
+  transition: color var(--es-motion-fast);
   z-index: 1;
 }
-
 .containerSm .segment {
-  padding: 3px 8px;
+  min-width: 36px;
+  padding: 0 var(--es-spacing-2);
   font-size: var(--es-text-xs);
 }
-
-.segment:hover:not(:disabled) {
-  color: var(--es-foreground);
-}
-
+.segment:hover:not(:disabled),
 .segmentSelected {
-  color: var(--es-foreground);
+  color: var(--es-text-primary);
 }
-
+.segment:focus-visible {
+  outline: var(--es-focus-outline);
+  outline-offset: -1px;
+}
 .segmentDisabled {
-  opacity: 0.5;
+  color: var(--es-control-disabled-text);
   cursor: not-allowed;
 }

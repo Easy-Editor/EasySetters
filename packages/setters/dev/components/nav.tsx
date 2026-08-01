@@ -25,8 +25,16 @@ export function Nav() {
 
   return (
     <nav className='dev-nav'>
+      <div className='dev-nav-brand'>
+        <span className='dev-nav-mark'>ES</span>
+        <div>
+          <strong>EasySetters</strong>
+          <span className='dev-nav-subtitle'>属性面板组件库</span>
+        </div>
+      </div>
       <NavLink isActive={location.pathname === '/'} to='/'>
-        概览
+        <span>工作台</span>
+        <span className='dev-nav-count'>{demos.length}</span>
       </NavLink>
 
       <div className='dev-nav-section'>

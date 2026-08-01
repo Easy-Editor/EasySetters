@@ -73,7 +73,7 @@ const ObjectSetter = (props: ObjectSetterProps) => {
               className={styles.keyInput}
               onChange={e => {
                 const newKey = e.target.value
-                if (newKey && newKey !== key) {
+                if (newKey.length > 0 && newKey !== key) {
                   const newValue = { ...currentValue }
                   newValue[newKey] = newValue[key]
                   delete newValue[key]

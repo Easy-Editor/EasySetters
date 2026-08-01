@@ -1,35 +1,48 @@
 .container {
   width: 100%;
 }
-
 .textarea {
+  display: block;
   width: 100%;
-  min-height: 5rem;
+  min-height: 80px;
   padding: var(--es-spacing-2);
-  font-family:
-    ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, "Liberation Mono",
-    monospace;
+  font-family: ui-monospace, "SFMono-Regular", Consolas, monospace;
   font-size: var(--es-text-xs);
-  line-height: 1.5;
-  background-color: var(--es-background);
-  border: 1px solid var(--es-input);
+  line-height: 1.55;
+  color: var(--es-text-primary);
+  background: var(--es-control-bg);
+  border: 1px solid var(--es-control-border);
   border-radius: var(--es-radius-sm);
-  color: var(--es-foreground);
   outline: none;
   resize: vertical;
-  transition: border-color var(--es-transition);
+  transition:
+    border-color var(--es-motion-fast),
+    background-color var(--es-motion-fast);
 }
-
-.textarea:focus {
-  border-color: var(--es-ring);
+.textarea:hover:not(:disabled) {
+  border-color: var(--es-control-border-hover);
 }
-
+.textarea:focus-visible {
+  border-color: var(--es-focus-ring);
+  outline: var(--es-focus-outline);
+  outline-offset: -1px;
+}
+.textarea:disabled {
+  color: var(--es-control-disabled-text);
+  background: var(--es-control-disabled-bg);
+  cursor: not-allowed;
+}
 .textareaError {
-  border-color: var(--es-destructive);
+  border-color: var(--es-danger);
+  background: var(--es-danger-surface);
 }
-
+.textareaError:focus-visible {
+  border-color: var(--es-danger);
+  outline-color: var(--es-danger);
+}
 .error {
   margin-top: var(--es-spacing-1);
   font-size: var(--es-text-xs);
-  color: var(--es-destructive);
+  line-height: 1.4;
+  color: var(--es-danger);
 }

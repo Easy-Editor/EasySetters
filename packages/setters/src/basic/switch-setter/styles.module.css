@@ -1,49 +1,45 @@
-/* Switch 模式 */
 .switch {
   position: relative;
-  width: 2.25rem;
-  height: 1.25rem;
+  width: 32px;
+  height: 18px;
   padding: 0;
-  background-color: var(--es-input);
-  border: none;
-  border-radius: 9999px;
+  margin: 7px 0;
+  background: var(--es-control-border-hover);
+  border: 1px solid transparent;
+  border-radius: 999px;
   cursor: pointer;
-  transition: background-color var(--es-transition);
-  margin: 4px;
+  outline: none;
+  transition: background-color var(--es-motion-standard);
 }
-
 .switch:focus-visible {
-  outline: 2px solid var(--es-ring);
-  outline-offset: 2px;
+  outline: var(--es-focus-outline);
+  outline-offset: var(--es-focus-offset);
 }
-
+.switch:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
 .switchChecked {
-  background-color: var(--es-primary);
+  background: var(--es-action);
 }
-
 .switchThumb {
   position: absolute;
   top: 2px;
   left: 2px;
-  width: 1rem;
-  height: 1rem;
-  background-color: var(--es-background);
-  border-radius: 9999px;
-  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
-  transition: transform var(--es-transition);
+  width: 12px;
+  height: 12px;
+  background: var(--es-surface-panel);
+  border-radius: 999px;
+  transition: transform var(--es-motion-standard);
 }
-
 .switchThumbChecked {
-  transform: translateX(1rem);
+  transform: translateX(14px);
 }
-
-/* Checkbox 模式 */
 .checkboxWrapper {
   display: inline-flex;
   align-items: center;
   cursor: pointer;
 }
-
 .checkboxInput {
   position: absolute;
   width: 1px;
@@ -55,67 +51,70 @@
   white-space: nowrap;
   border: 0;
 }
-
 .checkbox {
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 1rem;
-  height: 1rem;
+  width: 16px;
+  height: 16px;
   padding: 0;
-  background-color: var(--es-background);
-  border: 1px solid var(--es-input);
-  border-radius: var(--es-radius-sm);
-  transition: all var(--es-transition);
+  color: var(--es-text-inverse);
+  background: var(--es-control-bg);
+  border: 1px solid var(--es-control-border);
+  border-radius: 3px;
+  transition:
+    border-color var(--es-motion-fast),
+    background-color var(--es-motion-fast);
 }
-
 .checkboxWrapper:hover .checkbox {
-  border-color: var(--es-ring);
+  border-color: var(--es-control-border-hover);
 }
-
-.checkboxInput:focus + .checkbox {
-  border-color: var(--es-ring);
-  box-shadow: 0 0 0 2px var(--es-ring-alpha);
+.checkboxInput:focus-visible + .checkbox {
+  outline: var(--es-focus-outline);
+  outline-offset: var(--es-focus-offset);
 }
-
 .checkboxChecked {
-  background-color: var(--es-primary);
-  border-color: var(--es-primary);
+  background: var(--es-action);
+  border-color: var(--es-action);
 }
-
 .checkIcon {
-  width: 0.75rem;
-  height: 0.75rem;
-  color: var(--es-primary-foreground);
+  width: 11px;
+  height: 11px;
+  color: var(--es-text-inverse);
 }
-
-/* Segmented 模式 */
 .segmented {
   display: inline-flex;
+  min-height: var(--es-control-height);
   padding: 2px;
-  background-color: var(--es-muted);
-  border-radius: var(--es-radius);
   gap: 2px;
+  background: var(--es-surface-subtle);
+  border: 1px solid var(--es-control-border);
+  border-radius: var(--es-radius);
 }
-
 .segmentedButton {
-  padding: var(--es-spacing-1) var(--es-spacing-2);
+  min-width: 48px;
+  padding: 0 var(--es-spacing-2);
+  font: inherit;
   font-size: var(--es-text-xs);
   font-weight: 500;
-  color: var(--es-muted-foreground);
+  color: var(--es-text-secondary);
   background: transparent;
-  border: none;
-  border-radius: calc(var(--es-radius) - 2px);
+  border: 0;
+  border-radius: 3px;
   cursor: pointer;
-  transition: all var(--es-transition);
+  outline: none;
+  transition:
+    color var(--es-motion-fast),
+    background-color var(--es-motion-fast);
 }
-
 .segmentedButton:hover {
-  color: var(--es-foreground);
+  color: var(--es-text-primary);
 }
-
+.segmentedButton:focus-visible {
+  outline: var(--es-focus-outline);
+  outline-offset: -1px;
+}
 .segmentedButtonSelected {
-  background-color: var(--es-background);
-  color: var(--es-foreground);
-  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+  color: var(--es-text-primary);
+  background: var(--es-control-bg);
 }
